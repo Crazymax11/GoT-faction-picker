@@ -1,0 +1,15 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>images/stark.png</file>
+        <file>images/hat.jpg</file>
+        <file>images/closed.png</file>
+        <file>images/opened.png</file>
+        <file>FractionToken.qml</file>
+        <file>images/baratheon.png</file>
+        <file>images/greyJoy.png</file>
+        <file>images/lanister.png</file>
+        <file>images/martell.png</file>
+        <file>images/Tyrell.png</file>
+    </qresource>
+</RCC>
