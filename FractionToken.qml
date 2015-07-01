@@ -5,6 +5,7 @@ Item
     id: defId
     property string name: "default"
     property string source: "default-image.png"
+    property var placeholder: def
     width: 80
     height: width
     Drag.hotSpot.x: width/2

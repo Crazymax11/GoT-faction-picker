@@ -19,6 +19,8 @@
 *.qbs.user
 *.qbs.user.*
 *.moc
+*.pro
+*.pri
 moc_*.cpp
 qrc_*.cpp
 ui_*.h
