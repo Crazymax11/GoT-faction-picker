@@ -15,73 +15,79 @@ ApplicationWindow {
         id: stark
         source: "qrc:/images/stark.png"
         name: "stark"
+        motto: "Winter is Coming"
     }
     FractionToken
     {
         id: baratheon
         source: "qrc:/images/baratheon.png"
         name: "baratheon"
+        motto: "Ours is the Fury"
     }
     FractionToken
     {
-        id: greyJoy
+        id: greyjoy
         source: "qrc:/images/greyJoy.png"
-        name: "greyJoy"
+        name: "greyjoy"
+        motto: "We Do Not Sow"
     }
     FractionToken
     {
         id: tyrell
         source: "qrc:/images/Tyrell.png"
         name: "tyrell"
+        motto: "Growing Strong"
     }
     FractionToken
     {
         id: lanister
         source: "qrc:/images/lanister.png"
         name: "lanister"
+        motto: "Hear Me Roar"
     }
     FractionToken
     {
         id: martell
         source: "qrc:/images/martell.png"
         name: "martell"
+        motto: "Unbowed, Unbent, Unbroken"
     }
     //place holders
     Item
     {
         id: placeHolder1
         x: mainWindow.width * 1/2
-        y: mainWindow.height * 1/10
+        y: mainWindow.height * 3/10
     }
     Item
     {
         id: placeHolder2
         x: mainWindow.width * 3/4
-        y: mainWindow.height * 3/10
+        y: mainWindow.height * 4/10
     }
     Item
     {
         id: placeHolder3
         x: mainWindow.width * 3/4
-        y: mainWindow.height * 7/10
+        y: mainWindow.height * 6/10
     }
     Item
     {
         id: placeHolder4
         x: mainWindow.width * 2/4
-        y: mainWindow.height * 9/10
+        y: mainWindow.height * 7/10
     }
     Item
     {
         id: placeHolder5
         x: mainWindow.width * 1/4
-        y: mainWindow.height * 7/10
+        y: mainWindow.height * 6/10
     }
     Item
     {
         id: placeHolder6
         x: mainWindow.width * 1/4
-        y: mainWindow.height * 3/10
+        y: mainWindow.height * 4/10
     }
 
 
@@ -89,8 +95,46 @@ ApplicationWindow {
     Item
     {
         id: animationPlaceholder
-        x: boxItem.x + boxItem.width/2
-        y: boxItem.y + boxItem.height * 3/2
+        x: mainWindow.width * 5/10
+        y: mainWindow.height * 7/10
+        z: 15
+
+    }
+
+    //placeholder for motto
+    Item
+    {
+        id: mottoPlaceholder
+        x: mainWindow.width * 5/10
+        y: mainWindow.height * 9.5/10
+        z: 15
+        Text
+        {
+            anchors.centerIn: parent
+            id: mottoText
+            width: mainWindow.width * 8/10
+            fontSizeMode: Text.HorizontalFit
+            font.pixelSize: 90
+            horizontalAlignment: Text.AlignHCenter
+        }
+    }
+
+    //placeholder for name
+    Item
+    {
+        id: namePlaceholder
+        x: mainWindow.width * 5/10
+        y: mainWindow.height * 1/10
+        z: 15
+        Text
+        {
+            anchors.centerIn: parent
+            id: nameText
+            width: mainWindow.width * 8/10
+            fontSizeMode: Text.HorizontalFit
+            font.pixelSize: 90
+            horizontalAlignment: Text.AlignHCenter
+        }
     }
 
     property var freeFractionPlaceholders : new Array()
@@ -109,7 +153,7 @@ ApplicationWindow {
         fractions.push(lanister)
         fractions.push(stark)
         fractions.push(tyrell)
-        fractions.push(greyJoy)
+        fractions.push(greyjoy)
         fractions.push(baratheon)
 
         fractions.forEach(function(item, i, arr)
@@ -122,11 +166,11 @@ ApplicationWindow {
     function setFractionToken(fraction, placeholder)
     {
         fraction.placeholder = placeholder
+
         fraction.x = placeholder.x - fraction.width/2;
         fraction.y = placeholder.y - fraction.height/2;
-
-
     }
+
     SequentialAnimation
     {
         id: choosenFractionAnimation
@@ -147,7 +191,6 @@ ApplicationWindow {
         }
         ParallelAnimation
         {
-
             PropertyAnimation
             {
                 target: choosenFractionAnimation.tar
@@ -161,16 +204,28 @@ ApplicationWindow {
                 to: choosenFractionAnimation.tar.placeholder.y - choosenFractionAnimation.tar.height/2
             }
         }
-
+        onStopped:
+        {
+            boxMouseArea.enabled = true
+            mottoText.text = ""
+            nameText.text = ""
+            choosenFractionAnimation.tar.z = 10
+        }
 
     }
-
+    Image
+    {
+        id: backgroundImage
+        source: "qrc:/images/background.png"
+        anchors.fill: parent
+    }
 
 
     Item
     {
         id: boxItem
-        width: 80
+        width: 100
+        z: 5
         height: width
         anchors.centerIn: parent
         property var array: new Array()
@@ -188,6 +243,10 @@ ApplicationWindow {
             frObject.placeholder = mainWindow.freeFractionPlaceholders.pop()
 
             choosenFractionAnimation.tar = frObject
+
+            mottoText.text = frObject.motto
+            nameText.text = frObject.name
+            frObject.z = 11
             choosenFractionAnimation.start()
         }
 
@@ -223,12 +282,14 @@ ApplicationWindow {
         }
         MouseArea
         {
+            id: boxMouseArea
             anchors.fill: parent
             onClicked:
             {
                 if (boxItem.array.length > 0)
                 {
                     parent.boxAnim()
+                    enabled = false
 
                 }
             }

@@ -5,9 +5,11 @@ Item
     id: defId
     property string name: "default"
     property string source: "default-image.png"
-    property var placeholder: def
+    property var placeholder
+    property string motto: "default"
     width: 80
     height: width
+    z: 10
     Drag.hotSpot.x: width/2
     Drag.hotSpot.y: height/2
     Drag.active: dragArea.drag.active

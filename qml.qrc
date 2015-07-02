@@ -11,5 +11,6 @@
         <file>images/lanister.png</file>
         <file>images/martell.png</file>
         <file>images/Tyrell.png</file>
+        <file>images/background.png</file>
     </qresource>
 </RCC>
