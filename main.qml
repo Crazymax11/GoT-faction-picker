@@ -1,6 +1,6 @@
 import QtQuick 2.3
 import QtQuick.Controls 1.2
-
+import QtMultimedia 5.0
 
 
 ApplicationWindow {
@@ -160,7 +160,7 @@ ApplicationWindow {
         {
             mainWindow.setFractionToken(fractions[i], freeFractionPlaceholders.pop())
         })
-
+        audioBackground.play()
 
     }
     function setFractionToken(fraction, placeholder)
@@ -220,6 +220,34 @@ ApplicationWindow {
         anchors.fill: parent
     }
 
+    Item
+    {
+        id: audioDriver
+        Audio
+        {
+            id: audioBackground
+            source: "qrc:/sounds/background.mp3"
+            loops: Audio.Infinite
+            volume: 0.5
+        }
+        Audio
+        {
+            id: audioBoxClosing
+            source: "qrc:/sounds/chest_closing.wav"
+        }
+        Audio
+        {
+            id: audioBoxOpening
+            source: "qrc:/sounds/chest_opening.wav"
+        }
+        Audio
+        {
+            id: audioBoxFractionChosed
+            source: "fractionChosed"
+        }
+    }
+
+
 
     Item
     {
@@ -261,8 +289,16 @@ ApplicationWindow {
         DropArea
         {
             anchors.fill: parent
-            onEntered: box.source = "qrc:/images/opened.png"
-            onExited: box.source = "qrc:/images/closed.png"
+            onEntered:
+            {
+                audioBoxOpening.play()
+                box.source = "qrc:/images/opened.png"
+            }
+            onExited:
+            {
+                audioBoxClosing.play()
+                box.source = "qrc:/images/closed.png"
+            }
             onDropped:
             {
                 mainWindow.freeFractionPlaceholders.push(drag.source.placeholder)
@@ -272,6 +308,7 @@ ApplicationWindow {
                 drag.source.visible = false;
                 boxItem.array.push(drag.source);
                 box.source = "qrc:/images/closed.png";
+                audioBoxClosing.play()
             }
             Image
             {
