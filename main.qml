@@ -8,48 +8,48 @@ ApplicationWindow {
     visible: true
     width: 480
     height: 640
-    title: qsTr("Fraction picker")
+    title: qsTr("Faction picker")
 
     FractionToken
     {
         id: stark
         source: "qrc:/images/stark.png"
-        name: "stark"
+        name: "Stark"
         motto: "Winter is Coming"
     }
     FractionToken
     {
         id: baratheon
         source: "qrc:/images/baratheon.png"
-        name: "baratheon"
+        name: "Baratheon"
         motto: "Ours is the Fury"
     }
     FractionToken
     {
         id: greyjoy
         source: "qrc:/images/greyJoy.png"
-        name: "greyjoy"
+        name: "Greyjoy"
         motto: "We Do Not Sow"
     }
     FractionToken
     {
         id: tyrell
         source: "qrc:/images/Tyrell.png"
-        name: "tyrell"
+        name: "Tyrell"
         motto: "Growing Strong"
     }
     FractionToken
     {
         id: lanister
         source: "qrc:/images/lanister.png"
-        name: "lanister"
+        name: "Lannister"
         motto: "Hear Me Roar"
     }
     FractionToken
     {
         id: martell
         source: "qrc:/images/martell.png"
-        name: "martell"
+        name: "Martell"
         motto: "Unbowed, Unbent, Unbroken"
     }
     //place holders
