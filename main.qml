@@ -10,42 +10,42 @@ ApplicationWindow {
     height: 640
     title: qsTr("Faction picker")
 
-    FractionToken
+    FactionToken
     {
         id: stark
         source: "qrc:/images/stark.png"
         name: "Stark"
         motto: "Winter is Coming"
     }
-    FractionToken
+    FactionToken
     {
         id: baratheon
         source: "qrc:/images/baratheon.png"
         name: "Baratheon"
         motto: "Ours is the Fury"
     }
-    FractionToken
+    FactionToken
     {
         id: greyjoy
         source: "qrc:/images/greyJoy.png"
         name: "Greyjoy"
         motto: "We Do Not Sow"
     }
-    FractionToken
+    FactionToken
     {
         id: tyrell
         source: "qrc:/images/Tyrell.png"
         name: "Tyrell"
         motto: "Growing Strong"
     }
-    FractionToken
+    FactionToken
     {
         id: lanister
         source: "qrc:/images/lanister.png"
         name: "Lannister"
         motto: "Hear Me Roar"
     }
-    FractionToken
+    FactionToken
     {
         id: martell
         source: "qrc:/images/martell.png"
@@ -137,54 +137,54 @@ ApplicationWindow {
         }
     }
 
-    property var freeFractionPlaceholders : new Array()
-    property var setedFractionPlaceholders : new Array()
-    property var fractions: new Array()
+    property var freeFactionPlaceholders : new Array()
+    property var setedFactionPlaceholders : new Array()
+    property var factions: new Array()
     Component.onCompleted:
     {
-        freeFractionPlaceholders.push(placeHolder1)
-        freeFractionPlaceholders.push(placeHolder2)
-        freeFractionPlaceholders.push(placeHolder3)
-        freeFractionPlaceholders.push(placeHolder4)
-        freeFractionPlaceholders.push(placeHolder5)
-        freeFractionPlaceholders.push(placeHolder6)
+        freeFactionPlaceholders.push(placeHolder1)
+        freeFactionPlaceholders.push(placeHolder2)
+        freeFactionPlaceholders.push(placeHolder3)
+        freeFactionPlaceholders.push(placeHolder4)
+        freeFactionPlaceholders.push(placeHolder5)
+        freeFactionPlaceholders.push(placeHolder6)
 
-        fractions.push(martell)
-        fractions.push(lanister)
-        fractions.push(stark)
-        fractions.push(tyrell)
-        fractions.push(greyjoy)
-        fractions.push(baratheon)
+        factions.push(martell)
+        factions.push(lanister)
+        factions.push(stark)
+        factions.push(tyrell)
+        factions.push(greyjoy)
+        factions.push(baratheon)
 
-        fractions.forEach(function(item, i, arr)
+        factions.forEach(function(item, i, arr)
         {
-            mainWindow.setFractionToken(fractions[i], freeFractionPlaceholders.pop())
+            mainWindow.setFactionToken(factions[i], freeFactionPlaceholders.pop())
         })
         audioBackground.play()
 
     }
-    function setFractionToken(fraction, placeholder)
+    function setFactionToken(faction, placeholder)
     {
-        fraction.placeholder = placeholder
+        faction.placeholder = placeholder
 
-        fraction.x = placeholder.x - fraction.width/2;
-        fraction.y = placeholder.y - fraction.height/2;
+        faction.x = placeholder.x - faction.width/2;
+        faction.y = placeholder.y - faction.height/2;
     }
 
     SequentialAnimation
     {
-        id: choosenFractionAnimation
+        id: choosenFactionAnimation
         property var tar
         PropertyAnimation
         {
-            target: choosenFractionAnimation.tar
+            target: choosenFactionAnimation.tar
             properties: "scale"
             to: 3
             duration: 1000
         }
         PropertyAnimation
         {
-            target: choosenFractionAnimation.tar
+            target: choosenFactionAnimation.tar
             properties: "scale"
             to: 1
             duration: 1000
@@ -193,15 +193,15 @@ ApplicationWindow {
         {
             PropertyAnimation
             {
-                target: choosenFractionAnimation.tar
+                target: choosenFactionAnimation.tar
                 properties: "x"
-                to: choosenFractionAnimation.tar.placeholder.x - choosenFractionAnimation.tar.width/2
+                to: choosenFactionAnimation.tar.placeholder.x - choosenFactionAnimation.tar.width/2
             }
             PropertyAnimation
             {
-                target: choosenFractionAnimation.tar
+                target: choosenFactionAnimation.tar
                 properties: "y"
-                to: choosenFractionAnimation.tar.placeholder.y - choosenFractionAnimation.tar.height/2
+                to: choosenFactionAnimation.tar.placeholder.y - choosenFactionAnimation.tar.height/2
             }
         }
         onStopped:
@@ -209,7 +209,7 @@ ApplicationWindow {
             boxMouseArea.enabled = true
             mottoText.text = ""
             nameText.text = ""
-            choosenFractionAnimation.tar.z = 10
+            choosenFactionAnimation.tar.z = 10
         }
 
     }
@@ -242,7 +242,7 @@ ApplicationWindow {
         }
         Audio
         {
-            id: audioBoxFractionChosed
+            id: audioBoxFactionChosed
             source: "fractionChosed"
         }
     }
@@ -262,23 +262,23 @@ ApplicationWindow {
             rotAnimator.running = true
         }
 
-        function fractionAnimation(frObject)
+        function factionAnimation(frObject)
         {
             frObject.x = animationPlaceholder.x  - frObject.width/2
             frObject.y = animationPlaceholder.y - frObject.height/2
             frObject.visible = true
 
-            frObject.placeholder = mainWindow.freeFractionPlaceholders.pop()
+            frObject.placeholder = mainWindow.freeFactionPlaceholders.pop()
 
-            choosenFractionAnimation.tar = frObject
+            choosenFactionAnimation.tar = frObject
 
             mottoText.text = frObject.motto
             nameText.text = frObject.name
             frObject.z = 11
-            choosenFractionAnimation.start()
+            choosenFactionAnimation.start()
         }
 
-        function getRandomFraction()
+        function getRandomFaction()
         {
             var Num = Math.floor(Math.random() * boxItem.array.length);
             var fraction = boxItem.array[Num];
@@ -301,9 +301,9 @@ ApplicationWindow {
             }
             onDropped:
             {
-                mainWindow.freeFractionPlaceholders.push(drag.source.placeholder)
-                mainWindow.freeFractionPlaceholders[0].x
-                mainWindow.freeFractionPlaceholders[0].y
+                mainWindow.freeFactionPlaceholders.push(drag.source.placeholder)
+                mainWindow.freeFactionPlaceholders[0].x
+                mainWindow.freeFactionPlaceholders[0].y
                 drag.placeholder = "undefined"
                 drag.source.visible = false;
                 boxItem.array.push(drag.source);
@@ -336,8 +336,8 @@ ApplicationWindow {
             {
                 if (running == false)
                 {
-                    var fraction = boxItem.getRandomFraction()
-                    boxItem.fractionAnimation(fraction)
+                    var fraction = boxItem.getRandomFaction()
+                    boxItem.factionAnimation(fraction)
                 }
             }
 

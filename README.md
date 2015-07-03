@@ -1,2 +1,2 @@
-# GoT-fraction-picker
-Fraction picker application for Game Of Thrones boardgame 2nd edition.
+# GoT-faction-picker
+Faction picker application for Game Of Thrones boardgame 2nd edition.
