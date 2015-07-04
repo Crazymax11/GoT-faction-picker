@@ -2,18 +2,17 @@
     <qresource prefix="/">
         <file>main.qml</file>
         <file>images/stark.png</file>
-        <file>images/hat.jpg</file>
         <file>images/closed.png</file>
         <file>images/opened.png</file>
         <file>FactionToken.qml</file>
         <file>images/baratheon.png</file>
         <file>images/greyJoy.png</file>
-        <file>images/lanister.png</file>
         <file>images/martell.png</file>
         <file>images/Tyrell.png</file>
         <file>images/background.png</file>
         <file>sounds/background.mp3</file>
         <file>sounds/chest_closing.wav</file>
         <file>sounds/chest_opening.wav</file>
+        <file>images/lannister.png</file>
     </qresource>
 </RCC>

@@ -16,6 +16,7 @@ ApplicationWindow {
         source: "qrc:/images/stark.png"
         name: "Stark"
         motto: "Winter is Coming"
+        width: mainWindow.width /4.5
     }
     FactionToken
     {
@@ -23,6 +24,7 @@ ApplicationWindow {
         source: "qrc:/images/baratheon.png"
         name: "Baratheon"
         motto: "Ours is the Fury"
+        width: mainWindow.width /4.5
     }
     FactionToken
     {
@@ -30,6 +32,7 @@ ApplicationWindow {
         source: "qrc:/images/greyJoy.png"
         name: "Greyjoy"
         motto: "We Do Not Sow"
+        width: mainWindow.width /4.5
     }
     FactionToken
     {
@@ -37,13 +40,15 @@ ApplicationWindow {
         source: "qrc:/images/Tyrell.png"
         name: "Tyrell"
         motto: "Growing Strong"
+        width: mainWindow.width /4.5
     }
     FactionToken
     {
         id: lanister
-        source: "qrc:/images/lanister.png"
+        source: "qrc:/images/lannister.png"
         name: "Lannister"
         motto: "Hear Me Roar"
+        width: mainWindow.width /4.5
     }
     FactionToken
     {
@@ -51,6 +56,7 @@ ApplicationWindow {
         source: "qrc:/images/martell.png"
         name: "Martell"
         motto: "Unbowed, Unbent, Unbroken"
+        width: mainWindow.width /4.5
     }
     //place holders
     Item
