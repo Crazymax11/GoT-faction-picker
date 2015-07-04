@@ -258,7 +258,7 @@ ApplicationWindow {
     Item
     {
         id: boxItem
-        width: 100
+        width: mainWindow.width / 4
         z: 5
         height: width
         anchors.centerIn: parent
