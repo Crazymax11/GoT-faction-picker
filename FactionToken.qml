@@ -13,6 +13,7 @@ Item
     Drag.hotSpot.x: width/2
     Drag.hotSpot.y: height/2
     Drag.active: dragArea.drag.active
+
     Image
     {
         source: parent.source
@@ -22,6 +23,10 @@ Item
         id: dragArea
         anchors.fill: parent
         drag.target: parent
+        drag.minimumY: 0
+        drag.maximumY: parent.parent.height - parent.height
+        drag.minimumX: 0
+        drag.maximumX: parent.parent.width - parent.width
         onReleased:
         {
             parent.Drag.drop()

@@ -14,5 +14,20 @@
         <file>sounds/chest_closing.wav</file>
         <file>sounds/chest_opening.wav</file>
         <file>images/lannister.png</file>
+        <file>FactionPicker.qml</file>
+        <file>images/placeHolder.png</file>
+        <file>track.qml</file>
+        <file>trackWindow.qml</file>
+        <file>SwordTrack.qml</file>
+        <file>images/sword.png</file>
+        <file>PlaceHolder.qml</file>
+        <file>testTracker.qml</file>
+        <file>RavenTrack.qml</file>
+        <file>images/raven.png</file>
+        <file>ThroneTrack.qml</file>
+        <file>images/throne.png</file>
+        <file>images/backButton.png</file>
+        <file>images/musicOff.png</file>
+        <file>images/musicOn.png</file>
     </qresource>
 </RCC>
