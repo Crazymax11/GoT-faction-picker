@@ -58,38 +58,38 @@ Item
     Item
     {
         id: placeHolder1
-        x: factionPicker.width * 1/2
-        y: factionPicker.height * 3/10
+        x: parent.width * 1/2
+        y: parent.height * 3/10
     }
     Item
     {
         id: placeHolder2
-        x: factionPicker.width * 3/4
-        y: factionPicker.height * 4/10
+        x: parent.width * 3/4
+        y: parent.height * 4/10
     }
     Item
     {
         id: placeHolder3
-        x: factionPicker.width * 3/4
-        y: factionPicker.height * 6/10
+        x: parent.width * 3/4
+        y: parent.height * 6/10
     }
     Item
     {
         id: placeHolder4
-        x: factionPicker.width * 2/4
-        y: factionPicker.height * 7/10
+        x: parent.width * 2/4
+        y: parent.height * 7/10
     }
     Item
     {
         id: placeHolder5
-        x: factionPicker.width * 1/4
-        y: factionPicker.height * 6/10
+        x: parent.width * 1/4
+        y: parent.height * 6/10
     }
     Item
     {
         id: placeHolder6
-        x: factionPicker.width * 1/4
-        y: factionPicker.height * 4/10
+        x: parent.width * 1/4
+        y: parent.height * 4/10
     }
 
 
@@ -167,8 +167,9 @@ Item
     {
         faction.placeholder = placeholder
 
-        faction.x = placeholder.x - faction.width/2;
-        faction.y = placeholder.y - faction.height/2;
+
+        faction.x = Qt.binding(function() { return placeholder.x - faction.width/2  });
+        faction.y = Qt.binding(function() { return placeholder.y - faction.height/2  });
     }
 
     SequentialAnimation
@@ -258,8 +259,11 @@ Item
 
         function factionAnimation(frObject)
         {
-            frObject.x = animationPlaceholder.x  - frObject.width/2
-            frObject.y = animationPlaceholder.y - frObject.height/2
+
+            frObject.x = Qt.binding(function() { return animationPlaceholder.x  - frObject.width/2  });
+
+            frObject.y = Qt.binding(function() { return animationPlaceholder.y - frObject.height/2  });
+
             frObject.visible = true
 
             frObject.placeholder = factionPicker.freeFactionPlaceholders.pop()

@@ -17,7 +17,7 @@
         <file>FactionPicker.qml</file>
         <file>images/placeHolder.png</file>
         <file>track.qml</file>
-        <file>trackWindow.qml</file>
+        <file>TrackWindow.qml</file>
         <file>SwordTrack.qml</file>
         <file>images/sword.png</file>
         <file>PlaceHolder.qml</file>
@@ -29,5 +29,8 @@
         <file>images/backButton.png</file>
         <file>images/musicOff.png</file>
         <file>images/musicOn.png</file>
+        <file>InfluenceTrack.qml</file>
+        <file>InfluenceTrackSlot.qml</file>
+        <file>InfluenceFactionToken.qml</file>
     </qresource>
 </RCC>

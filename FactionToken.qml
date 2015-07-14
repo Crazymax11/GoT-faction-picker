@@ -7,6 +7,7 @@ Item
     property string source: "default-image.png"
     property var placeholder
     property string motto: "default"
+
     width: 80
     height: width
     z: 10
@@ -29,6 +30,10 @@ Item
         drag.maximumX: parent.parent.width - parent.width
         onReleased:
         {
+            var newx = defId.x
+            var newy = defId.y
+            defId.x = newx
+            defId.y = newy
             parent.Drag.drop()
         }
     }

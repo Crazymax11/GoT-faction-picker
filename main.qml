@@ -10,6 +10,7 @@ ApplicationWindow {
     width: 480
     height: 640
     title: qsTr("Faction picker")
+    property var page
     Image
     {
         anchors.fill: parent
@@ -48,7 +49,8 @@ ApplicationWindow {
             {
                 mainMenuButtons.visible = true
                 backButton.visible = false
-                loder.source = ""
+                //loder.source = ""
+                mainWindow.page.visible = false
             }
         }
     }
@@ -86,6 +88,20 @@ ApplicationWindow {
             source: "qrc:/images/musicOn.png"
         }
     }
+    FactionPicker
+    {
+        width: parent.width
+        height: parent.height
+        id: factionPicker
+        visible: false
+    }
+    TrackWindow
+    {
+        width: parent.width
+        height: parent.height
+        id: trackWindow
+        visible: false
+    }
 
     Loader
     {
@@ -116,7 +132,9 @@ ApplicationWindow {
                 onClicked:
                 {
                     mainMenuButtons.visible = false
-                    loder.source = "qrc:/FactionPicker.qml"
+                    //loder.source = "qrc:/FactionPicker.qml"
+                    mainWindow.page = factionPicker
+                    factionPicker.visible = true
                     backButton.visible = true
                 }
 
@@ -140,7 +158,9 @@ ApplicationWindow {
                 onClicked:
                 {
                     mainMenuButtons.visible = false
-                    loder.source = "qrc:/trackWindow.qml"
+                    //loder.source = "qrc:/TrackWindow.qml"
+                    mainWindow.page = trackWindow
+                    trackWindow.visible = true
                     backButton.visible = true
                 }
 

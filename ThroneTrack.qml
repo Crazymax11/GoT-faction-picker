@@ -20,7 +20,7 @@ Rectangle {
     {
         token.x = phs.x + token.width/2
         token.y = phs.y + token.height/2
-        phs.item = token
+        phs.it = token
     }
 
     //unused tokens placeholders

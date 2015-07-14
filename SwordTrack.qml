@@ -18,9 +18,9 @@ Rectangle {
     property var tokens: new Array()
     function setTokenInphs(token, phs)
     {
-        token.x = phs.x + token.width/2
-        token.y = phs.y + token.height/2
-        phs.item = token
+        token.x = Qt.binding(function() { return phs.x + token.width/2  });
+        token.y = Qt.binding(function() { return phs.y + token.height/2  });
+        phs.it = token
     }
 
     //unused tokens placeholders
@@ -178,8 +178,8 @@ Rectangle {
                 anchors.fill: parent
                 onDropped:
                 {
-                    drag.source.x = parent.parent.x + parent.parent.width/2 - drag.source.width/2
-                    drag.source.y = parent.parent.height/2 - drag.source.height/2
+                    drag.source.x =  Qt.binding(function() { return firstSwordPlaceholder.x + firstSwordPlaceholder.width/2 - this.width/2});
+                    drag.source.y =  Qt.binding(function() { return firstSwordPlaceholder.height/2 - this.height/2 });
                     if (parent.parent.house !== "undeifned")
                     {
                         if (parent.parent.house.name !== drag.source.name)
