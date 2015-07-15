@@ -16,15 +16,10 @@
         <file>images/lannister.png</file>
         <file>FactionPicker.qml</file>
         <file>images/placeHolder.png</file>
-        <file>track.qml</file>
         <file>TrackWindow.qml</file>
-        <file>SwordTrack.qml</file>
         <file>images/sword.png</file>
         <file>PlaceHolder.qml</file>
-        <file>testTracker.qml</file>
-        <file>RavenTrack.qml</file>
         <file>images/raven.png</file>
-        <file>ThroneTrack.qml</file>
         <file>images/throne.png</file>
         <file>images/backButton.png</file>
         <file>images/musicOff.png</file>
@@ -32,5 +27,27 @@
         <file>InfluenceTrack.qml</file>
         <file>InfluenceTrackSlot.qml</file>
         <file>InfluenceFactionToken.qml</file>
+        <file>EventsWindow.qml</file>
+        <file>EventsDeck.qml</file>
+        <file>images/1stevent.png</file>
+        <file>images/2ndevent.png</file>
+        <file>images/thirdevent.png</file>
+        <file>Event.qml</file>
+        <file>EventCard.qml</file>
+        <file>images/westerosCards/ClashofKings.png</file>
+        <file>images/westerosCards/DarkWingsDarkWords.png</file>
+        <file>images/westerosCards/FeastforCrows.png</file>
+        <file>images/westerosCards/GameofThrones.png</file>
+        <file>images/westerosCards/LastDaysofSummer.png</file>
+        <file>images/westerosCards/Mustering.png</file>
+        <file>images/westerosCards/PuttotheSword.png</file>
+        <file>images/westerosCards/RainsofAutumn.png</file>
+        <file>images/westerosCards/SeaofStorms.png</file>
+        <file>images/westerosCards/StormofSwords.png</file>
+        <file>images/westerosCards/Supply.png</file>
+        <file>images/westerosCards/ThronesofBlades.png</file>
+        <file>images/westerosCards/WebofLies.png</file>
+        <file>images/westerosCards/WildingAttack.png</file>
+        <file>images/westerosCards/WinterisComing.png</file>
     </qresource>
 </RCC>

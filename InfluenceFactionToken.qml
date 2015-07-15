@@ -30,12 +30,8 @@ FactionToken
     {
         var oldx = token.x
         var oldy = token.y
-        console.log("move")
-        console.log(oldx)
-        console.log(xpos)
         xAnim.to = xpos
         xAnim.duration = Math.abs(xpos - token.x) * 1000/token.speed
-        console.log(xAnim.duration)
         yAnim.to = ypos
         yAnim.duration = Math.abs(ypos - token.x)/(token.speed / 1000)
         parAnim.start()

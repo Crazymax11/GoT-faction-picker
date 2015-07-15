@@ -58,9 +58,6 @@ Rectangle {
 
     function putFaction(faction, slot)
     {
-        console.log("putFaction")
-        console.log(faction.x)
-        console.log(slot.x)
         slot.house = faction
         faction.placeholder = slot
         faction.move(slot.x + slot.width/2 - faction.width/2, slot.y + slot.height/2 - faction.height/2)
@@ -68,7 +65,6 @@ Rectangle {
 
     function bindXY(faction)
     {
-        console.log("BIND")
         faction.x = Qt.binding(function() { return this.placeholder.x + this.placeholder.width/2 - this.width/2} )
         faction.y = Qt.binding(function() { return this.placeholder.y + this.placeholder.height/2 - this.height/2} )
     }

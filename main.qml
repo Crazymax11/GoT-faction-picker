@@ -102,6 +102,13 @@ ApplicationWindow {
         id: trackWindow
         visible: false
     }
+    EventsWindow
+    {
+        width: parent.width
+        height: parent.height
+        id: eventsWindow
+        visible: false
+    }
 
     Loader
     {
@@ -158,9 +165,33 @@ ApplicationWindow {
                 onClicked:
                 {
                     mainMenuButtons.visible = false
-                    //loder.source = "qrc:/TrackWindow.qml"
                     mainWindow.page = trackWindow
                     trackWindow.visible = true
+                    backButton.visible = true
+                }
+
+            }
+        }
+        Rectangle
+        {
+            y: parent.x + parent.height * 4/10 + 20
+            width: parent.width
+            height: parent.height * 2/10
+            Text
+            {
+                anchors.fill: parent
+                text: "События"
+            }
+            color: "yellow"
+
+            MouseArea
+            {
+                anchors.fill: parent
+                onClicked:
+                {
+                    mainMenuButtons.visible = false
+                    mainWindow.page = eventsWindow
+                    eventsWindow.visible = true
                     backButton.visible = true
                 }
 
