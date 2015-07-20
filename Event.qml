@@ -6,4 +6,6 @@ Item
     property string description
     property bool shuffle: false
     property bool wilding: false
+    property bool action: false
+    property bool effect: true
 }

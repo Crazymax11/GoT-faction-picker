@@ -57,8 +57,6 @@ Item
             PropertyChanges {
                 target: card
                 visible: true
-//                x: mainItem.width/2 - card.width/2
-//                y: mainItem.height/2 - card.height/2
                 x: cardHolder.x
                 y: cardHolder.y
                 width: cardHolder.width
@@ -69,30 +67,24 @@ Item
         {
             name: "ChosedWaiting"
             PropertyChanges {
-                target: mouseAreaCard
-                enabled: true
-            }
-            PropertyChanges {
                 target: card
                 visible: true
                 x: cardHolder.x
                 y: cardHolder.y
                 width: cardHolder.width
                 height: cardHolder.height
+                isClickable: true
             }
         },
         State
         {
             name: "BackToDeck"
             PropertyChanges {
-                target: mouseAreaCard
-                enabled: false
-            }
-            PropertyChanges {
                 target: card
                 visible: true
                 x: card.sender.x
                 y: card.sender.y
+                isClickable: false
             }
         }
     ]
@@ -120,17 +112,7 @@ Item
         z: 15
         visible: true
         property var sender
-        MouseArea
-        {
-            id: mouseAreaCard
-            anchors.fill: parent
-            enabled: false
-            onClicked:
-            {
-                mainItem.state = "BackToDeck"
-            }
-        }
-
+        onCardClicked: mainItem.state = "BackToDeck"
     }
 
     function showEvent(event, sender)
@@ -194,35 +176,35 @@ Item
         firstArray.push(
                     evComp.createObject(this, {
                                             "evName": "Снабжение",
-                                            "description" : "перераспределите снабжение"
+                                            "description" : "Переместите жетоны на треке снабжения. Дома сокращают или распускают войска, которые не могут содержать."
                                         }
                                         )
                     )
         firstArray.push(
                     evComp.createObject(this, {
                                             "evName": "Снабжение",
-                                            "description" : "перераспределите снабжение"
+                                            "description" : "Переместите жетоны на треке снабжения. Дома сокращают или распускают войска, которые не могут содержать."
                                         }
                                         )
                     )
         firstArray.push(
                     evComp.createObject(this, {
                                             "evName": "Снабжение",
-                                            "description" : "перераспределите снабжение"
+                                            "description" : "Переместите жетоны на треке снабжения. Дома сокращают или распускают войска, которые не могут содержать."
                                         }
                                         )
                     )
         firstArray.push(
                     evComp.createObject(this, {
                                             "evName": "Сбор войск",
-                                            "description" : "Соберите войска во всех своих замках и крепостях"
+                                            "description" : "Дома создают новые отряды в крепостях и замках"
                                         }
                                         )
                     )
         firstArray.push(
                     evComp.createObject(this, {
                                             "evName": "Сбор войск",
-                                            "description" : "Соберите войска во всех своих замках и крепостях"
+                                            "description" : "Дома создают новые отряды в крепостях и замках"
                                         }
                                         )
                     )
@@ -236,23 +218,25 @@ Item
         firstArray.push(
                     evComp.createObject(this, {
                                             "evName": "Трон из клинков",
-                                            "description" : "Владелец трона из клинков выбирает",
-                                            "wilding": true
+                                            "description" : "Владелец Железного трона приказывает всем Домам либо а) изменить снабжение и состав войск, либо б) собрать войска, либо в) отдыхать, так как ничего не происходит.",
+                                            "wilding": true,
+                                            "action": true
                                         }
                                         )
                     )
         firstArray.push(
                     evComp.createObject(this, {
                                             "evName": "Трон из клинков",
-                                            "description" : "Владелец трона из клинков выбирает",
-                                            "wilding": true
+                                            "description" : "Владелец Железного трона приказывает всем Домам либо а) изменить снабжение и состав войск, либо б) собрать войска, либо в) отдыхать, так как ничего не происходит.",
+                                            "wilding": true,
+                                            "action": true
                                         }
                                         )
                     )
         firstArray.push(
                     evComp.createObject(this, {
                                             "evName": "Зима близко",
-                                            "description" : "Перемешайте колоду",
+                                            "description" : "Немедленно перетасуйте эту колоду. Затем вскройте и разыграйте новую карту.",
                                             "shuffle": true
                                         }
                                         )
@@ -260,7 +244,7 @@ Item
         firstArray.push(
                     evComp.createObject(this, {
                                             "evName": "Последние дни лета",
-                                            "description" : "Ничего не происходит",
+                                            "description" : "Ничего не происходит.",
                                             "wilding": true
                                         }
                                         )
@@ -274,69 +258,77 @@ Item
         secondArray.push(
                     evComp.createObject(this, {
                                             "evName": "Битва королей",
-                                            "description" : "Все дома вступают в борьбу за влияние",
-                                            "action": "order"
+                                            "description" : "Все Дома вступают в борьбу за влияние.",
+                                            "effect": false
                                         }
                                         )
                     )
         secondArray.push(
                     evComp.createObject(this, {
                                             "evName": "Битва королей",
-                                            "description" : "Все дома вступают в борьбу за влияние",
-                                            "action": "order"
+                                            "description" : "Все Дома вступают в борьбу за влияние.",
+                                            "effect": false
                                         }
                                         )
                     )
         secondArray.push(
                     evComp.createObject(this, {
                                             "evName": "Битва королей",
-                                            "description" : "Все дома вступают в борьбу за влияние",
-                                            "action": "order"
+                                            "description" : "Все Дома вступают в борьбу за влияние.",
+                                            "effect": false
                                         }
                                         )
                     )
         secondArray.push(
                     evComp.createObject(this, {
                                             "evName": "Игра престолов",
-                                            "description" : "Соберите власть во всех подконтрольных землях",
+                                            "description" : "Каждый дом получает по одному жетону власти за каждый знак короны в подвластных землях.",
+                                            "effect": false
                                         }
                                         )
                     )
         secondArray.push(
                     evComp.createObject(this, {
                                             "evName": "Игра престолов",
-                                            "description" : "Соберите власть во всех подконтрольных землях",
+                                            "description" : "Каждый дом получает по одному жетону власти за каждый знак короны в подвластных землях.",
+                                            "effect": false
                                         }
                                         )
                     )
         secondArray.push(
                     evComp.createObject(this, {
                                             "evName": "Игра престолов",
-                                            "description" : "Соберите власть во всех подконтрольных землях",
+                                            "description" : "Каждый дом получает по одному жетону власти за каждый знак короны в подвластных землях.",
+                                            "effect": false
                                         }
                                         )
                     )
         secondArray.push(
                     evComp.createObject(this, {
-                                            "evName": "Черные крылья, черные слова",
-                                            "description" : "Владелец черного ворона выбирает",
-                                            "wilding": true
+                                            "evName": "Чёрные крылья, чёрные слова",
+                                            "description" : "Владелец Посыльного ворона приказывает всем Домам либо а) вступить в борьбу за влияние, либо б) собрать жетоны власти со всех подвластных земель со знаками короны, либо в) расслабляться, так как ничего не происходит.",
+                                            "wilding": true,
+                                            "action": true,
+                                            "effect": false
                                         }
                                         )
                     )
         secondArray.push(
                     evComp.createObject(this, {
-                                            "evName": "Черные крылья, черные слова",
-                                            "description" : "Владелец черного ворона выбирает",
-                                            "wilding": true
+                                            "evName": "Чёрные крылья, чёрные слова",
+                                            "description" : "Владелец Посыльного ворона приказывает всем Домам либо а) вступить в борьбу за влияние, либо б) собрать жетоны власти со всех подвластных земель со знаками короны, либо в) расслабляться, так как ничего не происходит.",
+                                            "wilding": true,
+                                            "action": true,
+                                            "effect": false
                                         }
                                         )
                     )
         secondArray.push(
                     evComp.createObject(this, {
                                             "evName": "Зима близко",
-                                            "description" : "Перемешайте колоду",
-                                            "shuffle": true
+                                            "description" : "Немедленно перетасуйте эту колоду. Затем вскройте и разыграйте новую карту.",
+                                            "shuffle": true,
+                                            "effect": false
                                         }
                                         )
                     )
@@ -344,7 +336,8 @@ Item
                     evComp.createObject(this, {
                                             "evName": "Последние дни лета",
                                             "description" : "Ничего не происходит",
-                                            "wilding": true
+                                            "wilding": true,
+                                            "effect": false
                                         }
                                         )
                     )
@@ -356,28 +349,31 @@ Item
         thirdArray.push(
                     evComp.createObject(this, {
                                             "evName": "Нашествие одичалых",
-                                            "description" : "Скиньте жетоны на борьбу с одичалыми"
+                                            "description" : "Одичалые наступают за земли Вестероса.",
+                                            "effect": false
                                         }
                                         )
                     )
         thirdArray.push(
                     evComp.createObject(this, {
                                             "evName": "Нашествие одичалых",
-                                            "description" : "Скиньте жетоны на борьбу с одичалыми"
+                                            "description" : "Одичалые наступают за земли Вестероса.",
+                                            "effect": false
                                         }
                                         )
                     )
         thirdArray.push(
                     evComp.createObject(this, {
                                             "evName": "Нашествие одичалых",
-                                            "description" : "Скиньте жетоны на борьбу с одичалыми"
+                                            "description" : "Одичалые наступают за земли Вестероса.",
+                                            "effect": false
                                         }
                                         )
                     )
         thirdArray.push(
                     evComp.createObject(this, {
                                             "evName": "Море штормов",
-                                            "description" : "Запрещаются приказы набега",
+                                            "description" : "В этой фазе замыслов нельзя отдавать приказы набега.",
                                             "wilding": true
                                         }
                                         )
@@ -385,15 +381,15 @@ Item
         thirdArray.push(
                     evComp.createObject(this, {
                                             "evName": "Дожди осени",
-                                            "description" : "Запрещаются приказы похода +1",
+                                            "description" : "В этой фазе замыслов нельзя отдавать приказы похода +1.",
                                             "wilding": true
                                         }
                                         )
                     )
         thirdArray.push(
                     evComp.createObject(this, {
-                                            "evName": "Feast for Crows",
-                                            "description" : "Запрещается собирать власть",
+                                            "evName": "Пир для ворон",
+                                            "description" : "В этой фазе замыслов нельзя отдавать приказы усиления власти.",
                                             "wilding": true
                                         }
                                         )
@@ -401,30 +397,34 @@ Item
         thirdArray.push(
                     evComp.createObject(this, {
                                             "evName": "Паутина лжи",
-                                            "description" : "Запрещаются приказы подмоги",
+                                            "description" : "В этой фазе замыслов нельзя отдавать приказы подмоги.",
                                             "wilding": true
                                         }
                                         )
                     )
         thirdArray.push(
                     evComp.createObject(this, {
-                                            "evName": "Шторм мечей",
-                                            "description" : "Запрещаются приказы обороны",
+                                            "evName": "Буря мечей",
+                                            "description" : "В этой фазе замыслов нельзя отдавать приказы обороны.",
                                             "wilding": true
                                         }
                                         )
                     )
         thirdArray.push(
                     evComp.createObject(this, {
-                                            "evName": "Слушайтесь меча",
-                                            "description" : "Владелец валирийского меча выбирает"
+                                            "evName": "Преданы мечу",
+                                            "description" : "Владелец Валирийского меча выбирает одно из условий для этой фазы замыслов: а) не отдаются приказы обороны, б) не отдаются приказы похода +1 или в) ограничений нет.",
+                                            "action": true,
+                                            "effect": false
                                         }
                                         )
                     )
         thirdArray.push(
                     evComp.createObject(this, {
-                                            "evName": "Слушайтесь меча",
-                                            "description" : "Владелец валирийского меча выбирает"
+                                            "evName": "Преданы мечу",
+                                            "description" : "Владелец Валирийского меча выбирает одно из условий для этой фазы замыслов: а) не отдаются приказы обороны, б) не отдаются приказы похода +1 или в) ограничений нет.",
+                                            "action": true,
+                                            "effect": false
                                         }
                                         )
                     )

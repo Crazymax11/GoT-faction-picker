@@ -49,5 +49,16 @@
         <file>images/westerosCards/WebofLies.png</file>
         <file>images/westerosCards/WildingAttack.png</file>
         <file>images/westerosCards/WinterisComing.png</file>
+        <file>WildingDeck.qml</file>
+        <file>Voting.qml</file>
+        <file>VoterToken.qml</file>
+        <file>VoterButtons.qml</file>
+        <file>SupplyTrack.qml</file>
+        <file>SmartPlaceholder.qml</file>
+        <file>SupplyTrackPosition.qml</file>
+        <file>images/tracks/supply.png</file>
+        <file>SupplyTrackArmy.qml</file>
+        <file>SmartToken.qml</file>
+        <file>TestSmartWindow.qml</file>
     </qresource>
 </RCC>
