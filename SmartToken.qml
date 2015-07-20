@@ -3,24 +3,26 @@ import QtQuick 2.3
 Item
 {
     id: root
+    width: 0
+    height: 0
+    property real tokenWidth: 80
+    property real tokenHeight: tokenWidth
+
     property string name: "default"
     property string source: "default-image.png"
     property var placeholder: undefined
 
     property var oldPh: null
-    width: 80
-    height: width
     Drag.hotSpot.x: width/2
     Drag.hotSpot.y: height/2
     Drag.active: dragArea.drag.active
 
     onPlaceholderChanged:
     {
-        if (oldPh)
-            oldPn.freePos()
+        if ((oldPh !== undefined) && (oldPh !== null))
+            oldPh.freePos(name)
         oldPh = placeholder
     }
-
     Behavior on x
     {
         NumberAnimation {
@@ -39,28 +41,41 @@ Item
                         easing.type: Easing.OutBounce
                     }
     }
+    Item
+    {
+        id: token
 
-    Image
-    {
-        source: parent.source
-        anchors.fill: parent
-    }
-    MouseArea
-    {
-        id: dragArea
-        anchors.fill: parent
-        drag.target: parent
-        drag.minimumY: 0
-        drag.maximumY: parent.parent.height - parent.height
-        drag.minimumX: 0
-        drag.maximumX: parent.parent.width - parent.width
-        onReleased:
+        width: root.tokenWidth
+        height: root.tokenHeight
+
+        anchors.centerIn: root
+
+
+
+        Image
         {
-            var newx = root.x
-            var newy = root.y
-            root.x = newx
-            root.y = newy
-            parent.Drag.drop()
+            source: root.source
+            anchors.fill: token
+        }
+        MouseArea
+        {
+            id: dragArea
+            anchors.fill: token
+            drag.target: root
+            drag.minimumY: 0
+            drag.maximumY: root.parent.height - root.height
+            drag.minimumX: 0
+            drag.maximumX: root.parent.width - root.width
+            onReleased:
+            {
+                var newx = root.x
+                var newy = root.y
+                root.x = newx
+                root.y = newy
+                root.Drag.drop()
+            }
         }
     }
 }
+
+

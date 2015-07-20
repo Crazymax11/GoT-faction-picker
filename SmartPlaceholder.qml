@@ -17,10 +17,15 @@ Item
     function freePos(name)
     {
         console.log("freepos")
+        console.log(name)
         for(var i = 0; i < usedPositions.length; i++)
         {
+            console.log("freeposFOR")
+            console.log("i = " + i)
+            console.log("usedPositions[i][name]" + usedPositions[i]["name"])
             if (usedPositions[i]["name"] === name)
             {
+                console.log("freeposINSIDE")
                 xypositions.push(usedPositions[i]["position"])
                 usedPositions.splice(i,1)
                 return;

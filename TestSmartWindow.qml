@@ -2,6 +2,7 @@ import QtQuick 2.0
 
 Item
 {
+    property real factionTokenWidth: 80
     SmartPlaceholder
     {
         id: ph
@@ -36,7 +37,7 @@ Item
         id: stark
         source: "qrc:/images/stark.png"
         name: "Stark"
-        width: factionTokenWidth
+        tokenWidth: factionTokenWidth
         x: 50
     }
     SmartToken
@@ -44,34 +45,34 @@ Item
         id: baratheon
         source: "qrc:/images/baratheon.png"
         name: "Baratheon"
-        width: factionTokenWidth
+        tokenWidth: factionTokenWidth
     }
     SmartToken
     {
         id: greyjoy
         source: "qrc:/images/greyJoy.png"
         name: "GreyJoy"
-        width: factionTokenWidth
+        tokenWidth: factionTokenWidth
     }
     SmartToken
     {
         id: tyrell
         source: "qrc:/images/Tyrell.png"
         name: "Tyrell"
-        width: factionTokenWidth
+        tokenWidth: factionTokenWidth
     }
     SmartToken
     {
         id: lannister
         source: "qrc:/images/lannister.png"
         name: "Lannister"
-        width: factionTokenWidth
+        tokenWidth: factionTokenWidth
     }
     SmartToken
     {
         id: martell
         source: "qrc:/images/martell.png"
         name: "Martell"
-        width: factionTokenWidth
+        tokenWidth: factionTokenWidth
     }
 }
