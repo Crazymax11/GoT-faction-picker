@@ -59,6 +59,8 @@
         <file>images/tracks/supply.png</file>
         <file>SupplyTrackArmy.qml</file>
         <file>SmartToken.qml</file>
-        <file>TestSmartWindow.qml</file>
+        <file>VictoryTrack.qml</file>
+        <file>VictoryTrackPosition.qml</file>
+        <file>images/tracks/castle.png</file>
     </qresource>
 </RCC>

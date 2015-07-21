@@ -1,6 +1,14 @@
 import QtQuick 2.0
 
 Item {
+
+    VictoryTrack
+    {
+        id: victoryTrack
+        width: parent.width
+        height: width/8
+        anchors.bottom: supplyTrack.top
+    }
     SupplyTrack
     {
         id: supplyTrack
@@ -8,7 +16,6 @@ Item {
         height: parent.height / 6
         y: parent.height * 2/6
         x: 0
-
     }
 
     InfluenceTrack

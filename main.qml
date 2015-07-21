@@ -110,14 +110,6 @@ ApplicationWindow {
         visible: false
     }
 
-    TestSmartWindow
-    {
-        width: parent.width
-        height: parent.height
-        id: testWindow
-        visible: false
-    }
-
     Loader
     {
         id: loder
@@ -200,31 +192,6 @@ ApplicationWindow {
                     mainMenuButtons.visible = false
                     mainWindow.page = eventsWindow
                     eventsWindow.visible = true
-                    backButton.visible = true
-                }
-
-            }
-        }
-        Rectangle
-        {
-            y: parent.x + parent.height * 6/10 + 20
-            width: parent.width
-            height: parent.height * 2/10
-            Text
-            {
-                anchors.fill: parent
-                text: "test"
-            }
-            color: "orange"
-
-            MouseArea
-            {
-                anchors.fill: parent
-                onClicked:
-                {
-                    mainMenuButtons.visible = false
-                    mainWindow.page = testWindow
-                    testWindow.visible = true
                     backButton.visible = true
                 }
 

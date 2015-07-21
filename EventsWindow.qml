@@ -26,7 +26,6 @@ Item
     }
     onStateChanged:
     {
-        console.log(mainItem.state)
         switch(mainItem.state)
         {
         case "ChosedAnimation":

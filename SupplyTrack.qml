@@ -5,6 +5,7 @@ Item
     id: mainItem
     width: 10
     height: 20
+    property real factionTokenSize: width/7/3
     SupplyTrackPosition
     {
         id: nullSupply
@@ -23,6 +24,7 @@ Item
         backgroudColor: "darkorange"
         count: "1"
         armies: ["3", "2"]
+        Component.onCompleted: ph.putToken(stark)
     }
     SupplyTrackPosition
     {
@@ -33,6 +35,14 @@ Item
         backgroudColor: "orange"
         count: "2"
         armies: ["3", "2", "2"]
+        Component.onCompleted:
+        {
+            ph.putToken(tyrell)
+            ph.putToken(lannister)
+            ph.putToken(greyjoy)
+            ph.putToken(baratheon)
+            ph.putToken(martell)
+        }
     }
     SupplyTrackPosition
     {
@@ -75,4 +85,51 @@ Item
         count: "6"
         armies: ["4", "3", "2", "2", "2"]
     }
+
+    //tokens
+    SmartToken
+    {
+        id: stark
+        source: "qrc:/images/stark.png"
+        name: "Stark"
+        tokenWidth: factionTokenSize
+    }
+    SmartToken
+    {
+        id: baratheon
+        source: "qrc:/images/baratheon.png"
+        name: "Baratheon"
+        tokenWidth: factionTokenSize
+    }
+    SmartToken
+    {
+        id: greyjoy
+        source: "qrc:/images/greyJoy.png"
+        name: "GreyJoy"
+        tokenWidth: factionTokenSize
+    }
+    SmartToken
+    {
+        id: tyrell
+        source: "qrc:/images/Tyrell.png"
+        name: "Tyrell"
+        tokenWidth: factionTokenSize
+    }
+    SmartToken
+    {
+        id: lannister
+        source: "qrc:/images/lannister.png"
+        name: "Lannister"
+        tokenWidth: factionTokenSize
+    }
+    SmartToken
+    {
+        id: martell
+        source: "qrc:/images/martell.png"
+        name: "Martell"
+        tokenWidth: factionTokenSize
+    }
+
+
+
 }

@@ -9,6 +9,8 @@ Item
     property color backgroudColor: "transparent"
     property string count: "0"
     property var armies: ["0", "0"]
+
+    property alias ph: placeholder
     Rectangle
     {
         anchors.fill: parent
@@ -19,15 +21,16 @@ Item
         id: track
         height: parent.height * koefTrackHeight
         width: parent.width
-        SmartPlaceholder
-        {
-            anchors.fill: parent
-
-        }
         Image
         {
             anchors.fill: parent
             source: "qrc:/images/tracks/supply.png"
+        }
+        SmartPlaceholder
+        {
+            id: placeholder
+            anchors.fill: parent
+            positionBase: root
         }
     }
     Item
@@ -50,7 +53,7 @@ Item
             fontSizeMode: Text.VerticalFit
             font.pixelSize: width
             horizontalAlignment: Text.AlignHCenter
-        }
+        }        
     }
     Item
     {

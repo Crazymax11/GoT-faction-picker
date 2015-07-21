@@ -29,7 +29,7 @@ Item
                         //This specifies how long the animation takes
                         duration: 1000
                         //This selects an easing curve to interpolate with, the default is Easing.Linear
-                        easing.type: Easing.OutBounce
+                        easing.type: Easing.Linear
                     }
     }
     Behavior on y
@@ -38,7 +38,7 @@ Item
                         //This specifies how long the animation takes
                         duration: 1000
                         //This selects an easing curve to interpolate with, the default is Easing.Linear
-                        easing.type: Easing.OutBounce
+                        easing.type: Easing.Linear
                     }
     }
     Item
