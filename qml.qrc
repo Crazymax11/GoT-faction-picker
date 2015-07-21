@@ -62,5 +62,7 @@
         <file>VictoryTrack.qml</file>
         <file>VictoryTrackPosition.qml</file>
         <file>images/tracks/castle.png</file>
+        <file>Turn.qml</file>
+        <file>images/turn.png</file>
     </qresource>
 </RCC>

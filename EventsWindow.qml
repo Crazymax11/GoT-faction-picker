@@ -125,6 +125,16 @@ Item
         mainItem.state = "ChosedAnimation"
     }
 
+    Turn
+    {
+        width: 120
+        height: 120
+        anchors.left: parent.left
+        anchors.top: parent.top
+        anchors.margins: 15
+        enabled: parent.isActive
+    }
+
     EventsDeck
     {
         x: 5
