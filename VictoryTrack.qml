@@ -4,8 +4,13 @@ Item
 {
     id: root
     width: 10
-    height: 20
-    property real factionTokenSize: width/8/3
+    height: (width - backgroundRect.border.width*2) / (8 - 6 * twoRows)
+
+    property real factionTokenSize: posWidth/3
+    property bool twoRows: false
+    readonly property real posWidth: (width - backgroundRect.border.width*2) * (1/8 + 1/8 * twoRows)
+    readonly property real posHeight: (height - backgroundRect.border.width*2) * (1 - 1/2 *twoRows)
+
     Rectangle
     {
         id: backgroundRect
@@ -20,16 +25,16 @@ Item
         id: nullCastle
         x: backgroundRect.border.width
         y: backgroundRect.border.width
-        width: (parent.width - backgroundRect.border.width*2) * 1/8
-        height: parent.height - backgroundRect.border.width*2
+        width: posWidth
+        height: posHeight
         count: "0"
     }
     VictoryTrackPosition
     {
         id: oneCastle
         y: backgroundRect.border.width
-        width: (parent.width - backgroundRect.border.width*2) * 1/8
-        height: parent.height - backgroundRect.border.width*2
+        width: posWidth
+        height: posHeight
         x: nullCastle.x + nullCastle.width
         count: "1"
         Component.onCompleted:
@@ -45,8 +50,8 @@ Item
     {
         id: twoCastle
         y: backgroundRect.border.width
-        width: (parent.width - backgroundRect.border.width*2) * 1/8
-        height: parent.height - backgroundRect.border.width*2
+        width: posWidth
+        height: posHeight
         x: oneCastle.x + oneCastle.width
         count: "2"
         Component.onCompleted: ph.putToken(stark)
@@ -55,45 +60,45 @@ Item
     {
         id: threeCastle
         y: backgroundRect.border.width
-        width: (parent.width - backgroundRect.border.width*2) * 1/8
-        height: parent.height - backgroundRect.border.width*2
+        width: posWidth
+        height: posHeight
         x: twoCastle.x + twoCastle.width
         count: "3"
     }
     VictoryTrackPosition
     {
         id: fourCastle
-        y: backgroundRect.border.width
-        width: (parent.width - backgroundRect.border.width*2) * 1/8
-        height: parent.height - backgroundRect.border.width*2
-        x: threeCastle.x + threeCastle.width
+        y: backgroundRect.border.width + twoRows * nullCastle.height
+        width: posWidth
+        height: posHeight
+        x: (threeCastle.x + threeCastle.width) * !twoRows
         count: "4"
 
     }
     VictoryTrackPosition
     {
         id: fiveCastle
-        y: backgroundRect.border.width
-        width: (parent.width - backgroundRect.border.width*2) * 1/8
-        height: parent.height - backgroundRect.border.width*2
+        width: posWidth
+        height: posHeight
         x: fourCastle.x + fourCastle.width
+        y: fourCastle.y
         count: "5"
     }
     VictoryTrackPosition
     {
         id: sixCastle
-        y: backgroundRect.border.width
-        width: (parent.width - backgroundRect.border.width*2) * 1/8
-        height: parent.height - backgroundRect.border.width*2
+        y: fourCastle.y
+        width: posWidth
+        height: posHeight
         x: fiveCastle.x + fiveCastle.width
         count: "6"
     }
     VictoryTrackPosition
     {
         id: sevenCastle
-        y: backgroundRect.border.width
-        width: (parent.width - backgroundRect.border.width*2) * 1/8
-        height: parent.height - backgroundRect.border.width*2
+        y: fourCastle.y
+        width: posWidth
+        height: posHeight
         x: sixCastle.x + sixCastle.width
         castleColor: "#C0EFFF00"
         count: "7"

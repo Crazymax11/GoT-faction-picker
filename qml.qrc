@@ -64,5 +64,10 @@
         <file>images/tracks/castle.png</file>
         <file>Turn.qml</file>
         <file>images/turn.png</file>
+        <file>olddesktopMain.qml</file>
+        <file>desktopMain.qml</file>
+        <file>FactionStatus.qml</file>
+        <file>StatusPosition.qml</file>
+        <file>Atest.qml</file>
     </qresource>
 </RCC>

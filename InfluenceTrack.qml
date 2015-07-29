@@ -20,6 +20,7 @@ Rectangle {
 
     property var order: new Array()
 
+    property bool verticalOrientation: false
     DropArea
     {
         anchors.fill: parent
@@ -147,9 +148,9 @@ Rectangle {
     InfluenceTrackSlot
     {
         id: firstSlot
-        x: trackImage.x + trackImage.width
-        width: factionPlaceholderWidth
-        height: parent.height
+        x: !superParent.verticalOrientation *(trackImage.x + trackImage.width)
+        width: !superParent.verticalOrientation * factionPlaceholderWidth + superParent.verticalOrientation * superParent.width
+        height: superParent.verticalOrientation * factionPlaceholderWidth + !superParent.verticalOrientation * superParent.height
         circleColor: "lightgray"
         circleText: "1"
         onCatched: superParent.catched(token, this)
@@ -157,9 +158,9 @@ Rectangle {
     InfluenceTrackSlot
     {
         id: secondSlot
-        x: trackImage.x + trackImage.width + factionPlaceholderWidth
-        width: factionPlaceholderWidth
-        height: parent.height
+        x: !superParent.verticalOrientation *(trackImage.x + trackImage.width + factionPlaceholderWidth)
+        width: !superParent.verticalOrientation * factionPlaceholderWidth + superParent.verticalOrientation * superParent.width
+        height: superParent.verticalOrientation * factionPlaceholderWidth + !superParent.verticalOrientation * superParent.height
         circleColor: "lightgray"
         circleText: "2"
         onCatched: superParent.catched(token, this)
@@ -167,6 +168,9 @@ Rectangle {
     InfluenceTrackSlot
     {
         id: thirdSlot
+        x: !superParent.verticalOrientation *(trackImage.x + trackImage.width + factionPlaceholderWidth)
+        width: !superParent.verticalOrientation * factionPlaceholderWidth + superParent.verticalOrientation * superParent.width
+        height: superParent.verticalOrientation * factionPlaceholderWidth + !superParent.verticalOrientation * superParent.height
         x: trackImage.x + trackImage.width + factionPlaceholderWidth * 2
         width: factionPlaceholderWidth
         height: parent.height
@@ -177,6 +181,9 @@ Rectangle {
     InfluenceTrackSlot
     {
         id: fourthSlot
+        x: !superParent.verticalOrientation *(trackImage.x + trackImage.width + factionPlaceholderWidth)
+        width: !superParent.verticalOrientation * factionPlaceholderWidth + superParent.verticalOrientation * superParent.width
+        height: superParent.verticalOrientation * factionPlaceholderWidth + !superParent.verticalOrientation * superParent.height
         x: trackImage.x + trackImage.width + factionPlaceholderWidth * 3
         width: factionPlaceholderWidth
         height: parent.height
@@ -187,6 +194,9 @@ Rectangle {
     InfluenceTrackSlot
     {
         id: fivethSlot
+        x: !superParent.verticalOrientation *(trackImage.x + trackImage.width + factionPlaceholderWidth)
+        width: !superParent.verticalOrientation * factionPlaceholderWidth + superParent.verticalOrientation * superParent.width
+        height: superParent.verticalOrientation * factionPlaceholderWidth + !superParent.verticalOrientation * superParent.height
         x: trackImage.x + trackImage.width + factionPlaceholderWidth * 4
         width: factionPlaceholderWidth
         height: parent.height
@@ -197,6 +207,9 @@ Rectangle {
     InfluenceTrackSlot
     {
         id: sixthSlot
+        x: !superParent.verticalOrientation *(trackImage.x + trackImage.width + factionPlaceholderWidth)
+        width: !superParent.verticalOrientation * factionPlaceholderWidth + superParent.verticalOrientation * superParent.width
+        height: superParent.verticalOrientation * factionPlaceholderWidth + !superParent.verticalOrientation * superParent.height
         x: trackImage.x + trackImage.width + factionPlaceholderWidth * 5
         width: factionPlaceholderWidth
         height: parent.height
