@@ -9,61 +9,47 @@ ApplicationWindow {
     height: 768
     title: qsTr("Game Of Thrones boardgame assister")
     visible: true
+
+
     Item
     {
-        id: leftColumn
-        anchors.top: parent.top
-        anchors.bottom: parent.bottom
-        anchors.left: parent.left
-        width: parent.width * 0.28
+        //App Window не содержит States
+        id: root
+        anchors.fill: parent
         Item
         {
-            id: roundBlock
+            id: leftColumn
             anchors.top: parent.top
+            anchors.bottom: parent.bottom
             anchors.left: parent.left
-            anchors.right: parent.right
-            height: parent.height * 0.23
-            Rectangle
+            width: parent.width * 0.28
+            Item
             {
-                anchors.fill: parent
-                color: "#915F19"
-            }
-
-            ColumnLayout
-            {
-                anchors.centerIn: parent
-                width: parent.width * 0.9
-                height: parent.height * 0.8
-                Item
+                id: roundBlock
+                anchors.top: parent.top
+                anchors.left: parent.left
+                anchors.right: parent.right
+                height: parent.height * 0.23
+                Rectangle
                 {
-                    Layout.fillWidth: true
-                    Layout.fillHeight: true
-                    Text
-                    {
-                        height: parent.height
-                        width: parent.width
-                        text: "- Round 1 -"
-                        font.bold: true
-                        fontSizeMode: Text.Fit
-                        font.pixelSize: height
-                        horizontalAlignment: Text.AlignHCenter
-                        verticalAlignment: Text.AlignVCenter
-                    }
+                    anchors.fill: parent
+                    color: "#915F19"
                 }
 
-                Item
+                ColumnLayout
                 {
-                    Layout.fillWidth: true
-                    Layout.fillHeight: true
-                    Rectangle
+                    anchors.centerIn: parent
+                    width: parent.width * 0.9
+                    height: parent.height * 0.8
+                    Item
                     {
-                        color: "#29A5E3"
-                        anchors.fill: parent
+                        Layout.fillWidth: true
+                        Layout.fillHeight: true
                         Text
                         {
                             height: parent.height
                             width: parent.width
-                            text: "Next Round"
+                            text: "- Round 1 -"
                             font.bold: true
                             fontSizeMode: Text.Fit
                             font.pixelSize: height
@@ -71,145 +57,188 @@ ApplicationWindow {
                             verticalAlignment: Text.AlignVCenter
                         }
                     }
+
+                    Item
+                    {
+                        Layout.fillWidth: true
+                        Layout.fillHeight: true
+                        Rectangle
+                        {
+                            color: "#29A5E3"
+                            anchors.fill: parent
+                            Text
+                            {
+                                height: parent.height
+                                width: parent.width
+                                text: "Next Round"
+                                font.bold: true
+                                fontSizeMode: Text.Fit
+                                font.pixelSize: height
+                                horizontalAlignment: Text.AlignHCenter
+                                verticalAlignment: Text.AlignVCenter
+                            }
+                        }
+                    }
+                }
+            }
+            Item
+            {
+                anchors.left: parent.left
+                anchors.right: parent.right
+                anchors.bottom: parent.bottom
+                anchors.top: roundBlock.bottom
+                ColumnLayout
+                {
+                    anchors.fill: parent
+                    spacing: 0
+                    id: statusTrack
+                    StatusPosition
+                    {
+                        source: "qrc:/images/Houses/greyjoy.png"
+                        name: "greyJoy"
+                        castles: 5
+                        supplies: 2
+                        Layout.fillWidth: true
+                        Layout.fillHeight: true
+                    }
+                    StatusPosition
+                    {
+                        source: "qrc:/images/Houses/stark.png"
+                        name: "stark"
+                        castles: 7
+                        supplies: 5
+                        Layout.fillWidth: true
+                        Layout.fillHeight: true
+                    }
+                    StatusPosition
+                    {
+                        source: "qrc:/images/Houses/lannister.png"
+                        name: "lannister"
+                        castles: 6
+                        supplies: 3
+                        Layout.fillWidth: true
+                        Layout.fillHeight: true
+                    }
+                    StatusPosition
+                    {
+                        source: "qrc:/images/Houses/martell.png"
+                        name: "martell"
+                        castles: 4
+                        supplies: 4
+                        Layout.fillWidth: true
+                        Layout.fillHeight: true
+                    }
+                    StatusPosition
+                    {
+                        source: "qrc:/images/Houses/baratheon.png"
+                        name: "baratheon"
+                        castles: 1
+                        supplies: 2
+                        Layout.fillWidth: true
+                        Layout.fillHeight: true
+                    }
+                    StatusPosition
+                    {
+                        source: "qrc:/images/Houses/tyrel.png"
+                        name: "Tyrell"
+                        castles: 0
+                        supplies: 0
+                        Layout.fillWidth: true
+                        Layout.fillHeight: true
+                    }
                 }
             }
         }
         Item
         {
-            anchors.left: parent.left
-            anchors.right: parent.right
+            id: rightColumn
+            anchors.top: parent.top
             anchors.bottom: parent.bottom
-            anchors.top: roundBlock.bottom
-            ColumnLayout
+            anchors.right: parent.right
+            width: parent.width * 0.3
+            RowLayout
             {
                 anchors.fill: parent
                 spacing: 0
-                id: statusTrack
-                StatusPosition
-                {
-                    source: "qrc:/images/greyJoy.png"
-                    name: "greyJoy"
-                    castles: 5
-                    supplies: 2
-                    Layout.fillWidth: true
-                    Layout.fillHeight: true
-                }
-                StatusPosition
-                {
-                    source: "qrc:/images/stark.png"
-                    name: "stark"
-                    castles: 7
-                    supplies: 5
-                    Layout.fillWidth: true
-                    Layout.fillHeight: true
-                }
-                StatusPosition
-                {
-                    source: "qrc:/images/lannister.png"
-                    name: "lannister"
-                    castles: 6
-                    supplies: 3
-                    Layout.fillWidth: true
-                    Layout.fillHeight: true
-                }
-                StatusPosition
-                {
-                    source: "qrc:/images/martell.png"
-                    name: "martell"
-                    castles: 4
-                    supplies: 4
-                    Layout.fillWidth: true
-                    Layout.fillHeight: true
-                }
-                StatusPosition
-                {
-                    source: "qrc:/images/baratheon.png"
-                    name: "baratheon"
-                    castles: 1
-                    supplies: 2
-                    Layout.fillWidth: true
-                    Layout.fillHeight: true
-                }
-                StatusPosition
-                {
-                    source: "qrc:/images/Tyrell.png"
-                    name: "Tyrell"
-                    castles: 0
-                    supplies: 0
-                    Layout.fillWidth: true
-                    Layout.fillHeight: true
-                }
-            }
-        }
-    }
-    Item
-    {
-        id: rightColumn
-        anchors.top: parent.top
-        anchors.bottom: parent.bottom
-        anchors.right: parent.right
-        width: parent.width * 0.3
-        RowLayout
-        {
-            anchors.fill: parent
-            spacing: 0
 
-            InfluenceTrack
-            {
-                id: ravenTrack
-                Layout.fillWidth: true
-                Layout.fillHeight: true
-                imageSrc: "qrc:/images/raven.png"
-                order: [
-                    "Lannister",
-                    "Stark",
-                    "Martell",
-                    "Baratheon",
-                    "Tyrell",
-                    "GreyJoy"
-                ]
-            }
-            InfluenceTrack
-            {
-                Layout.fillWidth: true
-                Layout.fillHeight: true
-                imageSrc: "qrc:/images/sword.png"
-                order: [
-                    "GreyJoy",
-                    "Tyrell",
-                    "Martell",
-                    "Stark",
-                    "Baratheon",
-                    "Lannister"
-                ]
-            }
-            InfluenceTrack
-            {
-                Layout.fillWidth: true
-                Layout.fillHeight: true
-                imageSrc: "qrc:/images/throne.png"
-                order: [
-                    "Baratheon",
-                    "Lannister",
-                    "Stark",
-                    "Martell",
-                    "GreyJoy",
-                    "Tyrell"
-                ]
+                InfluenceTrack
+                {
+                    id: ravenTrack
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true
+                    imageSrc: "qrc:/images/raven.png"
+                    order: [
+                        "Lannister",
+                        "Stark",
+                        "Martell",
+                        "Baratheon",
+                        "Tyrell",
+                        "GreyJoy"
+                    ]
+                    verticalOrientation: true
+                }
+                InfluenceTrack
+                {
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true
+                    imageSrc: "qrc:/images/sword.png"
+                    order: [
+                        "GreyJoy",
+                        "Tyrell",
+                        "Martell",
+                        "Stark",
+                        "Baratheon",
+                        "Lannister"
+                    ]
+                    verticalOrientation: true
+                }
+                InfluenceTrack
+                {
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true
+                    imageSrc: "qrc:/images/throne.png"
+                    order: [
+                        "Baratheon",
+                        "Lannister",
+                        "Stark",
+                        "Martell",
+                        "GreyJoy",
+                        "Tyrell"
+                    ]
+                    verticalOrientation: true
+                }
             }
         }
-    }
-    Item
-    {
-        id: contentBlock
-        anchors.left: leftColumn.right
-        anchors.top: parent.top
-        anchors.bottom: parent.bottom
-        anchors.right: rightColumn.left
-        Image
+        Item
         {
-            anchors.fill: parent
-            source: "qrc:/images/background.png"
+            id: contentBlock
+            anchors.left: leftColumn.right
+            anchors.top: parent.top
+            anchors.bottom: parent.bottom
+            anchors.right: rightColumn.left
+            Image
+            {
+                anchors.fill: parent
+                source: "qrc:/images/background.png"
+            }
         }
+
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

@@ -9,9 +9,9 @@ Rectangle {
     border.width: 2
     border.color: lighter(color, 1.5)
 
-    property real trackImageWidth: width * 1/5
-    property real factionPlaceholderWidth: (width - trackImageWidth) / 6
-    property real factionTokenWidth: Math.min(factionPlaceholderWidth * 0.9,  height * 0.9)
+    property real trackImageWidth: contentLength * 1/5
+    property real factionPlaceholderWidth: (contentLength - trackImageWidth) / 6
+    property real factionTokenWidth: Math.min(factionPlaceholderWidth * 0.9,  contentHeight * 0.9)
 
     property string imageSrc
 
@@ -19,6 +19,12 @@ Rectangle {
     property var slots: new Array()
 
     property var order: new Array()
+
+
+    property real contentLength: (verticalOrientation? height: width) - border.width*2
+    property real contentHeight: (verticalOrientation? width: height) - border.width*2
+    property real slotWidth: verticalOrientation? contentHeight: factionPlaceholderWidth
+    property real slotHeight: verticalOrientation? factionPlaceholderWidth: contentHeight
 
     property bool verticalOrientation: false
     DropArea
@@ -85,72 +91,79 @@ Rectangle {
     InfluenceFactionToken
     {
         id: stark
-        source: "qrc:/images/stark.png"
+        source: "qrc:/images/Houses/stark.png"
         name: "Stark"
         width: factionTokenWidth
         onAnimationStopped: superParent.bindXY(this)
-        speed: parent.width/5
+        speed: parent.contentLength/2
     }
     InfluenceFactionToken
     {
         id: baratheon
-        source: "qrc:/images/baratheon.png"
+        source: "qrc:/images/Houses/baratheon.png"
         name: "Baratheon"
         width: factionTokenWidth
         onAnimationStopped: superParent.bindXY(this)
-        speed: parent.width/5
+        speed: parent.contentLength/2
     }
     InfluenceFactionToken
     {
         id: greyjoy
-        source: "qrc:/images/greyJoy.png"
+        source: "qrc:/images/Houses/greyjoy.png"
         name: "GreyJoy"
         width: factionTokenWidth
         onAnimationStopped: superParent.bindXY(this)
-        speed: parent.width/5
+        speed: parent.contentLength/2
     }
     InfluenceFactionToken
     {
         id: tyrell
-        source: "qrc:/images/Tyrell.png"
+        source: "qrc:/images/Houses/tyrel.png"
         name: "Tyrell"
         width: factionTokenWidth
         onAnimationStopped: superParent.bindXY(this)
-        speed: parent.width/5
+        speed: parent.contentLength/2
     }
     InfluenceFactionToken
     {
         id: lannister
-        source: "qrc:/images/lannister.png"
+        source: "qrc:/images/Houses/lannister.png"
         name: "Lannister"
         width: factionTokenWidth
         onAnimationStopped: superParent.bindXY(this)
-        speed: parent.width/5
+        speed: parent.contentLength/2
     }
     InfluenceFactionToken
     {
         id: martell
-        source: "qrc:/images/martell.png"
+        source: "qrc:/images/Houses/martell.png"
         name: "Martell"
         width: factionTokenWidth
         onAnimationStopped: superParent.bindXY(this)
-        speed: parent.width/5
+        speed: parent.contentLength/2
     }
 
-    Image
+    Item
     {
         id: trackImage
-        width: trackImageWidth
-        height: parent.height
-        source: parent.imageSrc
+        width: superParent.verticalOrientation ? parent.contentHeight : trackImageWidth
+        height: superParent.verticalOrientation ? trackImageWidth : contentHeight
+        Image
+        {
+            width: Math.min(parent.height, parent.width)
+            height: width
+            anchors.centerIn: parent
+            source: superParent.imageSrc
+        }
     }
 
     InfluenceTrackSlot
     {
         id: firstSlot
-        x: !superParent.verticalOrientation *(trackImage.x + trackImage.width)
-        width: !superParent.verticalOrientation * factionPlaceholderWidth + superParent.verticalOrientation * superParent.width
-        height: superParent.verticalOrientation * factionPlaceholderWidth + !superParent.verticalOrientation * superParent.height
+        x: superParent.verticalOrientation ? superParent.border.width : trackImage.x + trackImage.width
+        y: superParent.verticalOrientation ? trackImage.y + trackImage.height : superParent.border.width
+        width: slotWidth
+        height: slotHeight
         circleColor: "lightgray"
         circleText: "1"
         onCatched: superParent.catched(token, this)
@@ -158,9 +171,10 @@ Rectangle {
     InfluenceTrackSlot
     {
         id: secondSlot
-        x: !superParent.verticalOrientation *(trackImage.x + trackImage.width + factionPlaceholderWidth)
-        width: !superParent.verticalOrientation * factionPlaceholderWidth + superParent.verticalOrientation * superParent.width
-        height: superParent.verticalOrientation * factionPlaceholderWidth + !superParent.verticalOrientation * superParent.height
+        x: superParent.verticalOrientation ? superParent.border.width : trackImage.x + trackImage.width + factionPlaceholderWidth
+        y: superParent.verticalOrientation ? trackImage.y + trackImage.height + factionPlaceholderWidth : superParent.border.width
+        width: slotWidth
+        height: slotHeight
         circleColor: "lightgray"
         circleText: "2"
         onCatched: superParent.catched(token, this)
@@ -168,12 +182,10 @@ Rectangle {
     InfluenceTrackSlot
     {
         id: thirdSlot
-        x: !superParent.verticalOrientation *(trackImage.x + trackImage.width + factionPlaceholderWidth)
-        width: !superParent.verticalOrientation * factionPlaceholderWidth + superParent.verticalOrientation * superParent.width
-        height: superParent.verticalOrientation * factionPlaceholderWidth + !superParent.verticalOrientation * superParent.height
-        x: trackImage.x + trackImage.width + factionPlaceholderWidth * 2
-        width: factionPlaceholderWidth
-        height: parent.height
+        x: superParent.verticalOrientation ? superParent.border.width : trackImage.x + trackImage.width + factionPlaceholderWidth * 2
+        y: superParent.verticalOrientation ? trackImage.y + trackImage.height + factionPlaceholderWidth * 2: superParent.border.width
+        width: slotWidth
+        height: slotHeight
         circleColor: "lightgray"
         circleText: "3"
         onCatched: superParent.catched(token, this)
@@ -181,12 +193,10 @@ Rectangle {
     InfluenceTrackSlot
     {
         id: fourthSlot
-        x: !superParent.verticalOrientation *(trackImage.x + trackImage.width + factionPlaceholderWidth)
-        width: !superParent.verticalOrientation * factionPlaceholderWidth + superParent.verticalOrientation * superParent.width
-        height: superParent.verticalOrientation * factionPlaceholderWidth + !superParent.verticalOrientation * superParent.height
-        x: trackImage.x + trackImage.width + factionPlaceholderWidth * 3
-        width: factionPlaceholderWidth
-        height: parent.height
+        x: superParent.verticalOrientation ? superParent.border.width : trackImage.x + trackImage.width + factionPlaceholderWidth * 3
+        y: superParent.verticalOrientation ? trackImage.y + trackImage.height + factionPlaceholderWidth * 3: superParent.border.width
+        width: slotWidth
+        height: slotHeight
         circleColor: "lightgray"
         circleText: "4"
         onCatched: superParent.catched(token, this)
@@ -194,12 +204,10 @@ Rectangle {
     InfluenceTrackSlot
     {
         id: fivethSlot
-        x: !superParent.verticalOrientation *(trackImage.x + trackImage.width + factionPlaceholderWidth)
-        width: !superParent.verticalOrientation * factionPlaceholderWidth + superParent.verticalOrientation * superParent.width
-        height: superParent.verticalOrientation * factionPlaceholderWidth + !superParent.verticalOrientation * superParent.height
-        x: trackImage.x + trackImage.width + factionPlaceholderWidth * 4
-        width: factionPlaceholderWidth
-        height: parent.height
+        x: superParent.verticalOrientation ? superParent.border.width : trackImage.x + trackImage.width + factionPlaceholderWidth * 4
+        y: superParent.verticalOrientation ? trackImage.y + trackImage.height + factionPlaceholderWidth * 4: superParent.border.width
+        width: slotWidth
+        height: slotHeight
         circleColor: "lightgray"
         circleText: "5"
         onCatched: superParent.catched(token, this)
@@ -207,15 +215,15 @@ Rectangle {
     InfluenceTrackSlot
     {
         id: sixthSlot
-        x: !superParent.verticalOrientation *(trackImage.x + trackImage.width + factionPlaceholderWidth)
-        width: !superParent.verticalOrientation * factionPlaceholderWidth + superParent.verticalOrientation * superParent.width
-        height: superParent.verticalOrientation * factionPlaceholderWidth + !superParent.verticalOrientation * superParent.height
-        x: trackImage.x + trackImage.width + factionPlaceholderWidth * 5
-        width: factionPlaceholderWidth
-        height: parent.height
+        x: superParent.verticalOrientation ? superParent.border.width : trackImage.x + trackImage.width + factionPlaceholderWidth * 5
+        y: superParent.verticalOrientation ? trackImage.y + trackImage.height + factionPlaceholderWidth * 5: superParent.border.width
+        width: slotWidth
+        height: slotHeight
         circleColor: "lightgray"
         circleText: "6"
         onCatched: superParent.catched(token, this)
+        onWidthChanged: console.log("slot width " + width)
+        onHeightChanged: console.log("slot height " + height)
     }
 }
 

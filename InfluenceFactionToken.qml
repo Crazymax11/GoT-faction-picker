@@ -33,7 +33,7 @@ FactionToken
         xAnim.to = xpos
         xAnim.duration = Math.abs(xpos - token.x) * 1000/token.speed
         yAnim.to = ypos
-        yAnim.duration = Math.abs(ypos - token.x)/(token.speed / 1000)
+        yAnim.duration = Math.abs(ypos - token.y)/(token.speed / 1000)
         parAnim.start()
     }
 }

@@ -69,5 +69,12 @@
         <file>FactionStatus.qml</file>
         <file>StatusPosition.qml</file>
         <file>Atest.qml</file>
+        <file>main.cpp</file>
+        <file>images/Houses/baratheon.png</file>
+        <file>images/Houses/greyjoy.png</file>
+        <file>images/Houses/lannister.png</file>
+        <file>images/Houses/martell.png</file>
+        <file>images/Houses/stark.png</file>
+        <file>images/Houses/tyrel.png</file>
     </qresource>
 </RCC>

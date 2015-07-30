@@ -3,17 +3,25 @@ import QtQuick 2.0
 Item
 {
     id: slot
-    x: 0
-    width: 0
-    height: 0
     property var house: "undefined"
     property color circleColor
     property string circleText
     signal catched (var token)
+    DropArea
+    {
+        id: dropArea
+        anchors.fill: slot
+//        width: Math.min(slot.width, slot.height)
+//        height: Math.min(slot.width, slot.height)
+        onDropped: catched(drag.source)
+        onWidthChanged: console.log("drop area width " + width)
+        onHeightChanged: console.log("drop area height " + height)
+    }
     Rectangle
     {
+        id: rect
         color: parent.circleColor
-        width: Math.min(parent.width, parent.height)
+        width: Math.min(slot.width, slot.height)
         height: width
         anchors.centerIn: parent
         radius: width/2
@@ -26,12 +34,7 @@ Item
             font.pixelSize: width
             horizontalAlignment: Text.AlignHCenter
         }
-        DropArea
-        {
-            id: dropArea
-            anchors.fill: parent
-            onDropped: catched(drag.source)
-        }
+
     }
 
 }
