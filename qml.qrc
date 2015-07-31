@@ -76,5 +76,9 @@
         <file>images/Houses/martell.png</file>
         <file>images/Houses/stark.png</file>
         <file>images/Houses/tyrel.png</file>
+        <file>Picker.qml</file>
+        <file>MapPrep.qml</file>
+        <file>DescriptionItem.qml</file>
+        <file>images/123.bmp</file>
     </qresource>
 </RCC>

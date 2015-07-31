@@ -14,8 +14,6 @@ Item
 //        width: Math.min(slot.width, slot.height)
 //        height: Math.min(slot.width, slot.height)
         onDropped: catched(drag.source)
-        onWidthChanged: console.log("drop area width " + width)
-        onHeightChanged: console.log("drop area height " + height)
     }
     Rectangle
     {

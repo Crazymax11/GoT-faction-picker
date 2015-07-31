@@ -20,9 +20,10 @@ FactionToken
         running: false
         NumberAnimation { id: xAnim ; target: token; property: "x"; to: 50; duration: 1000; easing.type: Easing.OutQuad}
         NumberAnimation { id: yAnim ; target: token; property: "y"; to: 50; duration: 1000; easing.type: Easing.OutQuad}
-
+        onStarted: parent.z = 100
         onStopped:
         {
+            parent.z = 0
             token.animationStopped()
         }
     }

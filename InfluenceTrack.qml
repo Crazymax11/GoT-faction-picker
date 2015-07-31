@@ -20,13 +20,23 @@ Rectangle {
 
     property var order: new Array()
 
-
     property real contentLength: (verticalOrientation? height: width) - border.width*2
     property real contentHeight: (verticalOrientation? width: height) - border.width*2
     property real slotWidth: verticalOrientation? contentHeight: factionPlaceholderWidth
     property real slotHeight: verticalOrientation? factionPlaceholderWidth: contentHeight
 
     property bool verticalOrientation: false
+
+    function hideTokens()
+    {
+        stark.visible = false
+        baratheon.visible = false
+        greyjoy.visible = false
+        tyrell.visible = false
+        lannister.visible = false
+        martell.visible = false
+    }
+
     DropArea
     {
         anchors.fill: parent
@@ -41,6 +51,7 @@ Rectangle {
 
     Component.onCompleted:
     {
+
         factions["Stark"] = stark
         factions["Baratheon"] = baratheon
         factions["GreyJoy"] = greyjoy
@@ -55,16 +66,26 @@ Rectangle {
         slots.push(fivethSlot)
         slots.push(sixthSlot)
 
+        if (order.length === 0)
+            return
+
         for(var i = 0; i < 6; i++)
         {
             putFaction(factions[order[i]], slots[i])
-
         }
     }
 
 
+    function setFaction(name, slotnum)
+    {
+        factions[name].visible = true
+        putFaction(factions[name], slots[slotnum])
+    }
+
     function putFaction(faction, slot)
     {
+        console.log(slot.house)
+        console.log(faction)
         slot.house = faction
         faction.placeholder = slot
         faction.move(slot.x + slot.width/2 - faction.width/2, slot.y + slot.height/2 - faction.height/2)
@@ -78,12 +99,13 @@ Rectangle {
 
     function catched(faction, slot)
     {
-        if (slot.house && (slot.house !== faction))
+        console.log("catched")
+        if (slot.house && (slot.house !== faction) && (slot.house !== "undefined"))
         {
-            var phs = faction.placeholder
-            var hs = slot.house
+            console.log("inif")
             putFaction(slot.house, faction.placeholder)
         }
+        console.log("afterif")
         putFaction(faction, slot)
     }
 
@@ -222,8 +244,6 @@ Rectangle {
         circleColor: "lightgray"
         circleText: "6"
         onCatched: superParent.catched(token, this)
-        onWidthChanged: console.log("slot width " + width)
-        onHeightChanged: console.log("slot height " + height)
     }
 }
 
