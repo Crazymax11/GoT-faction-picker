@@ -84,9 +84,21 @@ ApplicationWindow {
                 {
                     name: "planning phase"
                     PropertyChanges {
+                        target: planningPhaseDescription
+                        visible: true
+                    }
+                    PropertyChanges
+                    {
+                        target: nextRoundButton
+                        onClicked: root.state = "action phase 1"
+                    }
+                },
+                State
+                {
+                    name: "action phase 1"
+                    PropertyChanges {
                         target: stub
                         visible: true
-
                     }
                 }
 
@@ -185,6 +197,14 @@ ApplicationWindow {
         MapPrep
         {
             id: mapPreparation
+            anchors.fill: contentBlock
+            anchors.margins: 10
+            visible: false
+            z: contentBlock.z + 1
+        }
+        PlanningPhaseDescription
+        {
+            id: planningPhaseDescription
             anchors.fill: contentBlock
             anchors.margins: 10
             visible: false

@@ -80,5 +80,11 @@
         <file>MapPrep.qml</file>
         <file>DescriptionItem.qml</file>
         <file>images/123.bmp</file>
+        <file>PlanningPhaseDescription.qml</file>
+        <file>images/Orders/1.png</file>
+        <file>images/Orders/2.png</file>
+        <file>images/Orders/3.png</file>
+        <file>images/Orders/4.png</file>
+        <file>images/Orders/5.png</file>
     </qresource>
 </RCC>
