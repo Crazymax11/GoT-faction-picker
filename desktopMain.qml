@@ -20,7 +20,7 @@ ApplicationWindow {
         property bool timerSettings: false
         property bool wildingsSettings: false
         property bool westerosCardsSettings: false
-        Component.onCompleted: state = "Westeros phase. 1 Deck."
+        Component.onCompleted: state = "options"
         states:
             [
                 State
