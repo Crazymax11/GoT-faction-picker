@@ -91,7 +91,9 @@
         <file>WesterosPhaseThirdDeck.qml</file>
         <file>ActionPhaseOpenOrders.qml</file>
         <file>ActionPhaseRaids.qml</file>
-        <file>ActionsPhaseMarchs.qml</file>
+        <file>ActionPhaseMarchs.qml</file>
         <file>Wildings.qml</file>
+        <file>ActionPhaseCrowns.qml</file>
+        <file>ActionsPhaseCastles.qml</file>
     </qresource>
 </RCC>

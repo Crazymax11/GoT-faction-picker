@@ -344,7 +344,7 @@ ApplicationWindow {
             z: contentBlock.z + 1
         }
 
-        ActionsPhaseMarchs
+        ActionPhaseMarchs
         {
             id: actionPhase4marchs
             anchors.fill: contentBlock
