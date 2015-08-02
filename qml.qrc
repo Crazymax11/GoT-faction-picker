@@ -94,6 +94,6 @@
         <file>ActionPhaseMarchs.qml</file>
         <file>Wildings.qml</file>
         <file>ActionPhaseCrowns.qml</file>
-        <file>ActionsPhaseCastles.qml</file>
+        <file>ActionPhaseCastles.qml</file>
     </qresource>
 </RCC>
