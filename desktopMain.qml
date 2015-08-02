@@ -20,7 +20,7 @@ ApplicationWindow {
         property bool timerSettings: false
         property bool wildingsSettings: false
         property bool westerosCardsSettings: false
-        Component.onCompleted: state = "options"
+        Component.onCompleted: state = "Westeros phase. 1 Deck."
         states:
             [
                 State
@@ -90,15 +90,110 @@ ApplicationWindow {
                     PropertyChanges
                     {
                         target: nextRoundButton
-                        onClicked: root.state = "action phase 1"
+                        onClicked: root.state = "action phase 1. Open orders"
                     }
                 },
                 State
                 {
-                    name: "action phase 1"
+                    name: "action phase 1. Open orders"
                     PropertyChanges {
                         target: stub
                         visible: true
+                    }
+                },
+                State
+                {
+                    name: "action phase 2. Raid"
+                    PropertyChanges {
+                        target: stub
+                        visible: true
+                    }
+                },
+                State
+                {
+                    name: "action phase 3. March"
+                    PropertyChanges {
+                        target: stub
+                        visible: true
+                    }
+                },
+                State
+                {
+                    name: "action phase 4. Crowns"
+                    PropertyChanges {
+                        target: stub
+                        visible: true
+                    }
+                },
+                State
+                {
+                    name: "action phase 5. Castles"
+                    PropertyChanges {
+                        target: stub
+                        visible: true
+                    }
+                },
+                State
+                {
+                    name: "Game Over"
+                    PropertyChanges {
+                        target: stub
+                        visible: true
+                    }
+                },
+                State
+                {
+                    name: "next turn"
+                    PropertyChanges {
+                        target: stub
+                        visible: true
+                    }
+                },
+                State
+                {
+                    name: "Westeros Phase. Virtual deck"
+                    PropertyChanges {
+                        target: stub
+                        visible: true
+                    }
+                },
+                State
+                {
+                    name: "Westeros phase. 1 Deck."
+                    PropertyChanges {
+                        target: westerosFirstDeck
+                        visible: true
+                    }
+                    PropertyChanges
+                    {
+                        target: nextRoundButton
+                        onClicked: root.state = "Westeros phase. 2 Deck."
+                    }
+                },
+                State
+                {
+                    name: "Westeros phase. 2 Deck."
+                    PropertyChanges {
+                        target: westerosSecondDeck
+                        visible: true
+                    }
+                    PropertyChanges
+                    {
+                        target: nextRoundButton
+                        onClicked: root.state = "Westeros phase. 3 Deck."
+                    }
+                },
+                State
+                {
+                    name: "Westeros phase. 3 Deck."
+                    PropertyChanges {
+                        target: westerosThirdDeck
+                        visible: true
+                    }
+                    PropertyChanges
+                    {
+                        target: nextRoundButton
+                        onClicked: root.state = "planning phase"
                     }
                 }
 
@@ -205,6 +300,31 @@ ApplicationWindow {
         PlanningPhaseDescription
         {
             id: planningPhaseDescription
+            anchors.fill: contentBlock
+            anchors.margins: 10
+            visible: false
+            z: contentBlock.z + 1
+        }
+
+        WesterosPhaseFirstDeck
+        {
+            id: westerosFirstDeck
+            anchors.fill: contentBlock
+            anchors.margins: 10
+            visible: false
+            z: contentBlock.z + 1
+        }
+        WesterosPhaseSecondDeck
+        {
+            id: westerosSecondDeck
+            anchors.fill: contentBlock
+            anchors.margins: 10
+            visible: false
+            z: contentBlock.z + 1
+        }
+        WesterosPhaseThirdDeck
+        {
+            id: westerosThirdDeck
             anchors.fill: contentBlock
             anchors.margins: 10
             visible: false

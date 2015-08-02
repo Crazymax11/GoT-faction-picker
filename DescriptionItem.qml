@@ -11,7 +11,6 @@ Item
     Layout.minimumHeight: 100
     state: "shorted"
 
-
     states:
         [
             State

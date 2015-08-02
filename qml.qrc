@@ -86,5 +86,9 @@
         <file>images/Orders/3.png</file>
         <file>images/Orders/4.png</file>
         <file>images/Orders/5.png</file>
+        <file>WesterosPhaseFirstDeck.qml</file>
+        <file>WesterosPhaseCard.qml</file>
+        <file>WesterosPhaseSecondDeck.qml</file>
+        <file>WesterosPhaseThirdDeck.qml</file>
     </qresource>
 </RCC>
