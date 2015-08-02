@@ -11,6 +11,29 @@ Item
     readonly property real posWidth: (width - backgroundRect.border.width*2) * (1/8 + 1/8 * twoRows)
     readonly property real posHeight: (height - backgroundRect.border.width*2) * (1 - 1/2 *twoRows)
 
+    property var tokens:
+    {
+        "Stark": stark,
+        "Tyrell": tyrell,
+        "GreyJoy": greyjoy,
+        "Lannister": lannister,
+        "Baratheon": baratheon,
+        "Martell": martell
+    }
+
+    function getPosition(name)
+    {
+        return parseInt(tokens[name].placeholder.parent.count)
+    }
+
+    function getStatus()
+    {
+        var arr = {};
+        for (var key in tokens)
+            arr[key] = getPosition(key)
+        return arr
+    }
+
     Rectangle
     {
         id: backgroundRect

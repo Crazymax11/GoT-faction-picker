@@ -12,6 +12,7 @@ ApplicationWindow {
     visible: true
 
 
+
     Item
     {
         //App Window не содержит States
@@ -20,6 +21,35 @@ ApplicationWindow {
         property bool timerSettings: false
         property bool wildingsSettings: false
         property bool westerosCardsSettings: false
+
+        property real turn: 1
+        onTurnChanged:
+        {
+            if (turn === 11)
+            {
+                turn = 10
+                state = "Game Over"
+            }
+        }
+        function endTurn()
+        {
+            var castles = actionPhase6castles.getCastles()
+            var maxCastles = 0
+            for (var key in castles)
+            {
+                maxCastles = maxCastles > castles[key] ? maxCastles : castles[key]
+                //обновляем
+                statusTrack.updateCasltes(key, castles[key])
+            }
+            if (maxCastles === 7)
+                root.state = "Game Over"
+            else
+            {
+                root.state = "Westeros phase. 1 Deck."
+                turn +=  1
+            }
+        }
+
         Component.onCompleted: state = "options"
         states:
             [
@@ -136,7 +166,7 @@ ApplicationWindow {
                 {
                     name: "action phase 4. Crowns"
                     PropertyChanges {
-                        target: stub
+                        target: actionPhase5crowns
                         visible: true
                     }
                     PropertyChanges
@@ -149,8 +179,13 @@ ApplicationWindow {
                 {
                     name: "action phase 5. Castles"
                     PropertyChanges {
-                        target: stub
+                        target: actionPhase6castles
                         visible: true
+                    }
+                    PropertyChanges
+                    {
+                        target: nextRoundButton
+                        onClicked: root.endTurn()
                     }
                 },
                 State
@@ -159,14 +194,7 @@ ApplicationWindow {
                     PropertyChanges {
                         target: stub
                         visible: true
-                    }
-                },
-                State
-                {
-                    name: "next turn"
-                    PropertyChanges {
-                        target: stub
-                        visible: true
+                        text: "Game Over"
                     }
                 },
                 State
@@ -343,7 +371,6 @@ ApplicationWindow {
             visible: false
             z: contentBlock.z + 1
         }
-
         ActionPhaseMarchs
         {
             id: actionPhase4marchs
@@ -352,6 +379,23 @@ ApplicationWindow {
             visible: false
             z: contentBlock.z + 1
         }
+        ActionPhaseCrowns
+        {
+            id: actionPhase5crowns
+            anchors.fill: contentBlock
+            anchors.margins: 10
+            visible: false
+            z: contentBlock.z + 1
+        }
+        ActionPhaseCastles
+        {
+            id: actionPhase6castles
+            anchors.fill: contentBlock
+            anchors.margins: 10
+            visible: false
+            z: contentBlock.z + 1
+        }
+
 
 
         WesterosPhaseFirstDeck
@@ -386,11 +430,12 @@ ApplicationWindow {
             anchors.margins: 10
             visible: false
             z: contentBlock.z + 1
+            property string text : "В РАЗРАБОТКЕ"
             Text
             {
                 height: parent.height
                 width: parent.width
-                text: "В РАЗРАБОТКЕ"
+                text: stub.text
                 font.bold: true
                 fontSizeMode: Text.Fit
                 font.pixelSize: height
@@ -432,7 +477,7 @@ ApplicationWindow {
                         {
                             height: parent.height
                             width: parent.width
-                            text: "- Round 1 -"
+                            text: "- Round " + root.turn + "-"
                             font.bold: true
                             fontSizeMode: Text.Fit
                             font.pixelSize: height
@@ -481,8 +526,25 @@ ApplicationWindow {
                     anchors.fill: parent
                     spacing: 0
                     id: statusTrack
+
+                    function updateCasltes(name, count)
+                    {
+                        factions[name].castles = count
+                    }
+
+                    property var factions:
+                    {
+                        "Stark": starkStatusPosition,
+                        "Tyrell": tyrellStatusPosition,
+                        "GreyJoy": greyJoyStatusPosition,
+                        "Lannister": lannisterStatusPosition,
+                        "Baratheon": baratheonStatusPosition,
+                        "Martell": martellStatusPosition
+                    }
+
                     StatusPosition
                     {
+                        id: greyJoyStatusPosition
                         source: "qrc:/images/Houses/greyjoy.png"
                         name: "greyJoy"
                         castles: 5
@@ -492,6 +554,7 @@ ApplicationWindow {
                     }
                     StatusPosition
                     {
+                        id: starkStatusPosition
                         source: "qrc:/images/Houses/stark.png"
                         name: "stark"
                         castles: 7
@@ -501,6 +564,7 @@ ApplicationWindow {
                     }
                     StatusPosition
                     {
+                        id: lannisterStatusPosition
                         source: "qrc:/images/Houses/lannister.png"
                         name: "lannister"
                         castles: 6
@@ -510,6 +574,7 @@ ApplicationWindow {
                     }
                     StatusPosition
                     {
+                        id: martellStatusPosition
                         source: "qrc:/images/Houses/martell.png"
                         name: "martell"
                         castles: 4
@@ -519,6 +584,7 @@ ApplicationWindow {
                     }
                     StatusPosition
                     {
+                        id: baratheonStatusPosition
                         source: "qrc:/images/Houses/baratheon.png"
                         name: "baratheon"
                         castles: 1
@@ -528,6 +594,7 @@ ApplicationWindow {
                     }
                     StatusPosition
                     {
+                        id: tyrellStatusPosition
                         source: "qrc:/images/Houses/tyrel.png"
                         name: "Tyrell"
                         castles: 0
