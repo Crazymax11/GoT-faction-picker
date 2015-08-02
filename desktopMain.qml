@@ -20,7 +20,7 @@ ApplicationWindow {
         property bool timerSettings: false
         property bool wildingsSettings: false
         property bool westerosCardsSettings: false
-        Component.onCompleted: state = "options"
+        Component.onCompleted: state = "action phase 1. Open orders"
         states:
             [
                 State
@@ -97,24 +97,39 @@ ApplicationWindow {
                 {
                     name: "action phase 1. Open orders"
                     PropertyChanges {
-                        target: stub
+                        target: actionPhase2OpenOrders
                         visible: true
+                    }
+                    PropertyChanges
+                    {
+                        target: nextRoundButton
+                        onClicked: root.state = "action phase 2. Raid"
                     }
                 },
                 State
                 {
                     name: "action phase 2. Raid"
                     PropertyChanges {
-                        target: stub
+                        target: actionPhase3Raids
                         visible: true
+                    }
+                    PropertyChanges
+                    {
+                        target: nextRoundButton
+                        onClicked: root.state = "action phase 3. March"
                     }
                 },
                 State
                 {
                     name: "action phase 3. March"
                     PropertyChanges {
-                        target: stub
+                        target: actionPhase4marchs
                         visible: true
+                    }
+                    PropertyChanges
+                    {
+                        target: nextRoundButton
+                        onClicked: root.state = "action phase 4. Crowns"
                     }
                 },
                 State
@@ -123,6 +138,11 @@ ApplicationWindow {
                     PropertyChanges {
                         target: stub
                         visible: true
+                    }
+                    PropertyChanges
+                    {
+                        target: nextRoundButton
+                        onClicked: root.state = "action phase 5. Castles"
                     }
                 },
                 State
@@ -305,6 +325,34 @@ ApplicationWindow {
             visible: false
             z: contentBlock.z + 1
         }
+
+        ActionPhaseOpenOrders
+        {
+            id: actionPhase2OpenOrders
+            anchors.fill: contentBlock
+            anchors.margins: 10
+            visible: false
+            z: contentBlock.z + 1
+        }
+
+        ActionPhaseRaids
+        {
+            id: actionPhase3Raids
+            anchors.fill: contentBlock
+            anchors.margins: 10
+            visible: false
+            z: contentBlock.z + 1
+        }
+
+        ActionsPhaseMarchs
+        {
+            id: actionPhase4marchs
+            anchors.fill: contentBlock
+            anchors.margins: 10
+            visible: false
+            z: contentBlock.z + 1
+        }
+
 
         WesterosPhaseFirstDeck
         {

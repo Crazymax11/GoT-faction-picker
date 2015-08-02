@@ -90,5 +90,8 @@
         <file>WesterosPhaseCard.qml</file>
         <file>WesterosPhaseSecondDeck.qml</file>
         <file>WesterosPhaseThirdDeck.qml</file>
+        <file>ActionPhaseOpenOrders.qml</file>
+        <file>ActionPhaseRaids.qml</file>
+        <file>ActionsPhaseMarchs.qml</file>
     </qresource>
 </RCC>
