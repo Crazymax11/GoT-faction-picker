@@ -89,12 +89,9 @@
         <file>WesterosPhaseCard.qml</file>
         <file>WesterosPhaseSecondDeck.qml</file>
         <file>WesterosPhaseThirdDeck.qml</file>
-<<<<<<< .merge_file_a11172
         <file>ActionPhaseOpenOrders.qml</file>
         <file>ActionPhaseRaids.qml</file>
         <file>ActionsPhaseMarchs.qml</file>
-=======
         <file>Wildings.qml</file>
->>>>>>> .merge_file_a03748
     </qresource>
 </RCC>
