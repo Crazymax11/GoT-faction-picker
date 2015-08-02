@@ -1,0 +1,10 @@
+diff a/desktopMain.qml b/desktopMain.qml	(rejected hunks)
+@@ -20,7 +20,7 @@
+         property bool timerSettings: false
+         property bool wildingsSettings: false
+         property bool westerosCardsSettings: false
+-        Component.onCompleted: state = "options"
++        Component.onCompleted: state = "action phase 1. Open orders"
+         states:
+             [
+                 State
