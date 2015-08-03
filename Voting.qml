@@ -34,8 +34,9 @@ Rectangle{
     }
 
     function startVoting(){
-    mainVotingRect.visible = true;
-    switchVotingVisible();
+        mainVotingRect.visible = true;
+        disableChecked();
+        switchVotingVisible();
     }
 
    function switchVotingVisible() {
@@ -46,6 +47,11 @@ Rectangle{
          martellImage.visible = (votingArray.martell == 1)? true : false;
          tyrelImage.visible = (votingArray.tyrel == 1)? true : false;
     }
+   function disableChecked(){
+        for(var key in componentArray){
+            componentArray[key].checked = false
+        }
+   }
 
     function switchRectVisible(n) {
         redRect1.visible = (n == 1) ? true : false;
@@ -63,10 +69,6 @@ Rectangle{
     voting.visible = true
     textInput.text = votingResult[votingId]
     }
-
-
-
-
 
     GridLayout {
         id: column1

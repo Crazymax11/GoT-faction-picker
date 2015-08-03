@@ -95,5 +95,6 @@
         <file>Wildings.qml</file>
         <file>ActionPhaseCrowns.qml</file>
         <file>ActionPhaseCastles.qml</file>
+        <file>images/System/check.png</file>
     </qresource>
 </RCC>
