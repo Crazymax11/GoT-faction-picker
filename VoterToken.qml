@@ -1,26 +1,46 @@
-import QtQuick 2.0
+import QtQuick 2.3
 
 Item
 {
     id: root
-    property int count: 0
+    property bool checked: false
     property string name
-    onNameChanged:
-    {
-    }
-
+    property string source
+    property bool borderVisible: false
+    signal clicked()
     Image
     {
-        id: house
-        source : "qrc:/images/" + root.name + ".png"
-    }
-
-    Rectangle
-    {
-        id: plusOne
+        anchors.centerIn: parent
+        width: Math.min(parent.width,parent.height)
+        height: width
+        antialiasing: false
+        clip: false
+        scale: 1
+        fillMode: Image.PreserveAspectFit
+        source: root.source
         MouseArea
         {
-
+            id: marea
+            anchors.fill: parent
+            onClicked: root.clicked();
+        }
+        Rectangle
+        {
+            id: redborder
+            color: "transparent";
+            anchors.fill: parent
+            border.width: 3
+            border.color: "red"
+            visible: root.borderVisible
+        }
+        Image
+        {
+            anchors.bottom: parent.bottom
+            anchors.right: parent.right
+            width: parent.width/2
+            height: width
+            source:"qrc:/images/System/check.png"
+            visible: root.checked
         }
     }
 }
