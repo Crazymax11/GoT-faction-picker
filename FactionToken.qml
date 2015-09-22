@@ -7,7 +7,8 @@ Item
     property string source: "default-image.png"
     property var placeholder
     property string motto: "default"
-
+    property alias dragMouseArea: dragArea
+    property bool dragEnabled: true
     width: 80
     height: width
     z: 10
@@ -15,6 +16,8 @@ Item
     Drag.hotSpot.y: height/2
     Drag.active: dragArea.drag.active
 
+    signal clicked(var tok)
+    onClicked: console.log("clicked")
     Image
     {
         source: parent.source
@@ -22,6 +25,7 @@ Item
     }
     MouseArea {
         id: dragArea
+        visible: defId.dragEnabled
         anchors.fill: parent
         drag.target: parent
         drag.minimumY: 0
@@ -36,5 +40,11 @@ Item
             defId.y = newy
             parent.Drag.drop()
         }
+    }
+    MouseArea {
+        id: clickArea
+        anchors.fill: parent
+        visible: !(defId.dragEnabled)
+        onClicked: defId.clicked(defId)
     }
 }

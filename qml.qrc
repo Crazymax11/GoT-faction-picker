@@ -96,5 +96,25 @@
         <file>ActionPhaseCrowns.qml</file>
         <file>ActionPhaseCastles.qml</file>
         <file>images/System/check.png</file>
+        <file>Atext.qml</file>
+        <file>WesterosCardEffect.qml</file>
+        <file>SupplyEffect.qml</file>
+        <file>MusteringEffect.qml</file>
+        <file>WinterIsComingEffect.qml</file>
+        <file>LastDaysOfSummerEffect.qml</file>
+        <file>ThroneOfSwordsEffect.qml</file>
+        <file>GameOfThronesEffect.qml</file>
+        <file>ClashOfKingsEffect.qml</file>
+        <file>DarkWingsDarkWordsEffect.qml</file>
+        <file>SeaOfStormsEffect.qml</file>
+        <file>RainsOfAutumnEffect.qml</file>
+        <file>WildingAttackEffect.qml</file>
+        <file>FeastforCrowsEffect.qml</file>
+        <file>WebOfLiesEffect.qml</file>
+        <file>StormOfSwordsEffect.qml</file>
+        <file>PutToTheSwordEffect.qml</file>
+        <file>InfluenceTrackVoting.qml</file>
+        <file>VotingSimple.qml</file>
+        <file>VotingPlaceholder.qml</file>
     </qresource>
 </RCC>

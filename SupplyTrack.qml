@@ -6,6 +6,37 @@ Item
     width: 10
     height: 20
     property real factionTokenSize: width/7/3
+    property var supplies:
+    {
+        0: nullSupply,
+        1: oneSupply,
+        2: twoSupply,
+        3: threeSupply,
+        4: fourSupply,
+        5: fiveSupply,
+        6: sixSupply,
+    }
+    property var tokens:
+    {
+        "Stark": stark,
+        "Baratheon": baratheon,
+        "GreyJoy": greyjoy,
+        "Lannister": lannister,
+        "Tyrell": tyrell,
+        "Martell": martell
+    }
+
+    function getStat()
+    {
+        var result = {}
+        for(var key in tokens)
+        {
+
+            result[key] = parseInt(tokens[key].placeholder.parent.parent.count)
+        }
+        return result
+    }
+
     SupplyTrackPosition
     {
         id: nullSupply

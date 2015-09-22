@@ -7,6 +7,7 @@ Rectangle{
     anchors.horizontalCenterOffset: 0
     visible: false
     color: "#A0FFFFFF"
+    signal votingFinished(var votRes)
     property string curentVoting
     property var votingArray :{
         "stark": 1,
@@ -17,13 +18,14 @@ Rectangle{
         "martell": 1,
     }
     property var votingResult :{
-        "stark": 0,
-        "tyrel": 0,
-        "greyjoy": 0,
-        "lannister": 0,
-        "baratheon": 0,
-        "martell": 0
+        "stark": -1,
+        "tyrel": -1,
+        "greyjoy": -1,
+        "lannister": -1,
+        "baratheon": -1,
+        "martell": -1
     }
+
     property var componentArray :{
         "stark": stark,
         "tyrel": tyrell,
@@ -40,6 +42,13 @@ Rectangle{
             componentArray[key].visible = (votingArray[key] == 1)? true : false;
             componentArray[key].checked = false
         }
+    }
+    function isFinished()
+    {
+        for(var key in votingResult)
+            if (votingResult[key] < 0)
+                return
+        votingFinished()
     }
 
     function voteCall(votingId){
@@ -104,7 +113,6 @@ Rectangle{
             }
     }
 
-
     Item{
          id:voting
          visible : false
@@ -116,7 +124,7 @@ Rectangle{
              x : parent.width*(1/4)
              autoScroll: true
              maximumLength: 2
-             validator: IntValidator{bottom: 0; top: 99;}
+             validator: IntValidator{bottom: 0; top: 20;}
              anchors.verticalCenter: parent.verticalCenter
              verticalAlignment: TextInput.AlignVCenter
              horizontalAlignment: TextInput.AlignHCenter
@@ -153,6 +161,7 @@ Rectangle{
                 onClicked: {
                     voting.visible = false;
                     votingResult[curentVoting] = textInput.text;
+                    isFinished()
                     componentArray[curentVoting].checked = true;
                     componentArray[curentVoting].borderVisible = false;
                 }

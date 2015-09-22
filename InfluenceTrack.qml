@@ -84,7 +84,8 @@ Rectangle {
 
     function putFaction(faction, slot)
     {
-        console.log(slot.house)
+        if (slot)
+            console.log(slot.house)
         console.log(faction)
         slot.house = faction
         faction.placeholder = slot
@@ -93,8 +94,11 @@ Rectangle {
 
     function bindXY(faction)
     {
-        faction.x = Qt.binding(function() { return this.placeholder.x + this.placeholder.width/2 - this.width/2} )
-        faction.y = Qt.binding(function() { return this.placeholder.y + this.placeholder.height/2 - this.height/2} )
+        faction.x = faction.placeholder.x + faction.placeholder.width/2 - faction.width/2
+        faction.y = faction.placeholder.y + faction.placeholder.height/2 - faction.height/2
+        // вариант с бингингом, вернуть когда будет скейлебл делать
+        //faction.x = Qt.binding(function() { return this.placeholder.x + this.placeholder.width/2 - this.width/2} )
+        //faction.y = Qt.binding(function() { return this.placeholder.y + this.placeholder.height/2 - this.height/2} )
     }
 
     function catched(faction, slot)
@@ -117,7 +121,9 @@ Rectangle {
         name: "Stark"
         width: factionTokenWidth
         onAnimationStopped: superParent.bindXY(this)
-        speed: parent.contentLength/2
+        //speed: parent.contentLength/2
+        speed: 400
+        z: parent.z + 2
     }
     InfluenceFactionToken
     {
@@ -126,7 +132,8 @@ Rectangle {
         name: "Baratheon"
         width: factionTokenWidth
         onAnimationStopped: superParent.bindXY(this)
-        speed: parent.contentLength/2
+        speed: 400
+        z: parent.z + 2
     }
     InfluenceFactionToken
     {
@@ -135,7 +142,8 @@ Rectangle {
         name: "GreyJoy"
         width: factionTokenWidth
         onAnimationStopped: superParent.bindXY(this)
-        speed: parent.contentLength/2
+        speed: 400
+        z: parent.z + 2
     }
     InfluenceFactionToken
     {
@@ -144,7 +152,8 @@ Rectangle {
         name: "Tyrell"
         width: factionTokenWidth
         onAnimationStopped: superParent.bindXY(this)
-        speed: parent.contentLength/2
+        speed: 400
+        z: parent.z + 2
     }
     InfluenceFactionToken
     {
@@ -153,7 +162,8 @@ Rectangle {
         name: "Lannister"
         width: factionTokenWidth
         onAnimationStopped: superParent.bindXY(this)
-        speed: parent.contentLength/2
+        speed: 400
+        z: parent.z + 2
     }
     InfluenceFactionToken
     {
@@ -162,7 +172,8 @@ Rectangle {
         name: "Martell"
         width: factionTokenWidth
         onAnimationStopped: superParent.bindXY(this)
-        speed: parent.contentLength/2
+        speed: 400
+        z: parent.z + 2
     }
 
     Item
@@ -189,6 +200,7 @@ Rectangle {
         circleColor: "lightgray"
         circleText: "1"
         onCatched: superParent.catched(token, this)
+        z: parent.z + 1
     }
     InfluenceTrackSlot
     {
@@ -200,6 +212,7 @@ Rectangle {
         circleColor: "lightgray"
         circleText: "2"
         onCatched: superParent.catched(token, this)
+        z: parent.z + 1
     }
     InfluenceTrackSlot
     {
@@ -211,6 +224,7 @@ Rectangle {
         circleColor: "lightgray"
         circleText: "3"
         onCatched: superParent.catched(token, this)
+        z: parent.z + 1
     }
     InfluenceTrackSlot
     {
@@ -222,6 +236,7 @@ Rectangle {
         circleColor: "lightgray"
         circleText: "4"
         onCatched: superParent.catched(token, this)
+        z: parent.z + 1
     }
     InfluenceTrackSlot
     {
@@ -233,6 +248,7 @@ Rectangle {
         circleColor: "lightgray"
         circleText: "5"
         onCatched: superParent.catched(token, this)
+        z: parent.z + 1
     }
     InfluenceTrackSlot
     {
@@ -244,6 +260,7 @@ Rectangle {
         circleColor: "lightgray"
         circleText: "6"
         onCatched: superParent.catched(token, this)
+        z: parent.z + 1
     }
 }
 

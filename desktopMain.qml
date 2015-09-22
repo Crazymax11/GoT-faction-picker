@@ -11,8 +11,6 @@ ApplicationWindow {
     title: qsTr("Game Of Thrones boardgame assister")
     visible: true
 
-
-
     Item
     {
         //App Window не содержит States
@@ -21,6 +19,7 @@ ApplicationWindow {
         property bool timerSettings: false
         property bool wildingsSettings: false
         property bool westerosCardsSettings: false
+        property string nextState : ""
 
         property real turn: 1
         onTurnChanged:
@@ -47,6 +46,73 @@ ApplicationWindow {
             {
                 root.state = "Westeros phase. 1 Deck."
                 turn +=  1
+            }
+        }
+
+        function startWesterosEffect(name)
+        {
+            switch (name)
+            {
+            case "Снабжение":
+                root.state = "Supply"
+                root.nextState = "Westeros phase. 2 Deck."
+                break;
+            case "Сбор войск":
+                root.state = "Mustering"
+                root.nextState = "Westeros phase. 2 Deck."
+                break;
+            case "Зима близко":
+                root.nextState = root.state
+                root.state = "Winter is Coming"
+                break;
+            case "Последние дни лета":
+                var lastDaystrans =
+                {
+                    "Dark wings, dark words": "Westeros phase. 3 Deck.",
+                    "Преданы мечу": "planning phase",
+                    "Westeros phase. 1 Deck.": "Westeros phase. 2 Deck.",
+                    "Westeros phase. 2 Deck.": "Westeros phase. 3 Deck.",
+                    "Throne of Swords": "Westeros phase. 2 Deck."
+                }
+
+                root.nextState = lastDaystrans[root.state]
+                root.state = "Last Days of Summer"
+                break;
+            case "Трон из клинков":
+                root.state = "Throne of Swords"
+                break;
+            case "Игра Престолов":
+                root.state = "Game of Thrones"
+                root.nextState = "Westeros phase. 3 Deck."
+                break;
+            case "Битва королей":
+                root.state = "Clash of Kings"
+                clashOfKingsEffect.startVoting()
+                break;
+            case "Чёрные крылья, чёрные слова":
+                root.state = "Dark wings, dark words"
+                break;
+            case "Нашествие одичалых":
+                root.state = "Нашествие одичалых"
+                break;
+            case "Море штормов":
+                root.state = "Море штормов"
+                break;
+            case "Дожди осени":
+                root.state = "Дожди осени"
+                break;
+            case "Пир для ворон":
+                root.state = "Пир для ворон"
+                break;
+            case "Паутина лжи":
+                root.state = "Паутина лжи"
+                break;
+            case "Буря мечей":
+                root.state = "Буря мечей"
+                break;
+            case "Преданы мечу":
+                root.state = "Преданы мечу"
+                break;
             }
         }
 
@@ -218,6 +284,109 @@ ApplicationWindow {
                         onClicked: root.state = "Westeros phase. 2 Deck."
                     }
                 },
+                //карты 1ой фазы
+                State
+                {
+                    name: "Supply"
+                    PropertyChanges {
+                        target: supplyEffect
+                        visible: true
+                    }
+                    PropertyChanges
+                    {
+                        target: nextRoundButton
+                        onClicked:
+                        {
+
+                            var res = supplyEffect.suptr.getStat()
+                            console.log(res)
+                            for(var key in res)
+                            {
+                                statusTrack.updateSupplies(key, res[key])
+                            }
+                            root.state = root.nextState
+                        }
+                    }
+                    PropertyChanges {
+                        target: nextRoundButtonText
+                        text: "Завершить снабжение"
+
+                    }
+                },
+
+
+                State
+                {
+                    name: "Mustering"
+                    PropertyChanges {
+                        target: musteringEffect
+                        visible: true
+                    }
+                    PropertyChanges
+                    {
+                        target: nextRoundButton
+                        onClicked: root.state = root.nextState
+                    }
+                    PropertyChanges {
+                        target: nextRoundButtonText
+                        text: "Завершить сбор войск"
+
+                    }
+                },
+
+                State
+                {
+                    name: "Winter is Coming"
+                    PropertyChanges {
+                        target: winterIsComingEffect
+                        visible: true
+                    }
+                    PropertyChanges
+                    {
+                        target: nextRoundButton
+                        onClicked: root.state = root.nextState
+                    }
+                    PropertyChanges {
+                        target: nextRoundButtonText
+                        text: "Разыграть новую карту"
+
+                    }
+                },
+                State
+                {
+                    name: "Last Days of Summer"
+                    PropertyChanges {
+                        target: lastDaysOfSummerEffect
+                        visible: true
+                    }
+                    PropertyChanges
+                    {
+                        target: nextRoundButton
+                        onClicked: root.state = root.nextState
+                    }
+                    PropertyChanges {
+                        target: nextRoundButtonText
+                        text: "Next"
+                    }
+                },
+                State
+                {
+                    name: "Throne of Swords"
+                    PropertyChanges {
+                        target: throneOfSwordsEffect
+                        visible: true
+                    }
+                    PropertyChanges
+                    {
+                        target: nextRoundButton
+                        enabled: false
+                    }
+                    PropertyChanges {
+                        target: nextRoundButtonText
+                        text: "Выберите эффект"
+                    }
+                },
+
                 State
                 {
                     name: "Westeros phase. 2 Deck."
@@ -231,6 +400,60 @@ ApplicationWindow {
                         onClicked: root.state = "Westeros phase. 3 Deck."
                     }
                 },
+
+                State
+                {
+                  name: "Game of Thrones"
+                  PropertyChanges
+                  {
+                      target: gameOfThronesEffect
+                      visible: true
+                  }
+                  PropertyChanges
+                  {
+                      target: nextRoundButton
+                      onClicked: root.state = "Westeros phase. 3 Deck."
+                  }
+                },
+                State
+                {
+                    name: "Clash of Kings"
+                    PropertyChanges
+                    {
+                        target: clashOfKingsEffect
+                        visible: true
+                    }
+                    PropertyChanges
+                    {
+                        target: nextRoundButton
+                        onClicked: root.state = "Westeros phase. 3 Deck."
+                        enabled: false
+                    }
+                    PropertyChanges
+                    {
+                        target: nextRoundButtonText
+                        text: "Голосование"
+                    }
+                },
+                State
+                {
+                    name: "Dark wings, dark words"
+                    PropertyChanges
+                    {
+                        target: darkWingsDarkWordsEffect
+                        visible: true
+                    }
+                    PropertyChanges
+                    {
+                        target: nextRoundButton
+                        enabled: false
+                    }
+                    PropertyChanges {
+                        target: nextRoundButtonText
+                        text: "Выберите эффект"
+                    }
+                },
+
                 State
                 {
                     name: "Westeros phase. 3 Deck."
@@ -241,7 +464,103 @@ ApplicationWindow {
                     PropertyChanges
                     {
                         target: nextRoundButton
+                        enabled: false
+                    }
+                },
+                State
+                {
+                    name: "Море штормов"
+                    PropertyChanges
+                    {
+                        target: seaOfStormsEffect
+                        visible: true
+                    }
+                    PropertyChanges {
+                        target: nextRoundButton
                         onClicked: root.state = "planning phase"
+                    }
+                },
+                State
+                {
+                    name: "Дожди осени"
+                    PropertyChanges
+                    {
+                        target: rainsOfAutumnEffect
+                        visible: true
+                    }
+                    PropertyChanges {
+                        target: nextRoundButton
+                        onClicked: root.state = "planning phase"
+                    }
+                },
+                State
+                {
+                    name: "Нашествие одичалых"
+                    PropertyChanges
+                    {
+                        target: wildingAttackEffect
+                        visible: true
+                    }
+                    PropertyChanges {
+                        target: nextRoundButton
+                        onClicked: root.state = "planning phase"
+                    }
+                },
+                State
+                {
+                    name: "Пир для ворон"
+                    PropertyChanges
+                    {
+                        target: feastForCrowsEffect
+                        visible: true
+                    }
+                    PropertyChanges {
+                        target: nextRoundButton
+                        onClicked: root.state = "planning phase"
+                    }
+                },
+                State
+                {
+                    name: "Паутина лжи"
+                    PropertyChanges
+                    {
+                        target: webOfLiesEffect
+                        visible: true
+                    }
+                    PropertyChanges {
+                        target: nextRoundButton
+                        onClicked: root.state = "planning phase"
+                    }
+                },
+                State
+                {
+                    name: "Буря мечей"
+                    PropertyChanges
+                    {
+                        target: stormOfSwordsEffect
+                        visible: true
+                    }
+                    PropertyChanges {
+                        target: nextRoundButton
+                        onClicked: root.state = "planning phase"
+                    }
+                },
+                State
+                {
+                    name: "Преданы мечу"
+                    PropertyChanges
+                    {
+                        target: putToTheSwordEffect
+                        visible: true
+                    }
+                    PropertyChanges
+                    {
+                        target: nextRoundButton
+                        enabled: false
+                    }
+                    PropertyChanges {
+                        target: nextRoundButtonText
+                        text: "Выберите эффект"
                     }
                 }
 
@@ -405,7 +724,54 @@ ApplicationWindow {
             anchors.margins: 10
             visible: false
             z: contentBlock.z + 1
+            onCardChoisen: root.startWesterosEffect(name)
         }
+
+        SupplyEffect
+        {
+            id: supplyEffect
+            anchors.fill: contentBlock
+            anchors.margins: 10
+            visible: false
+            z: contentBlock.z + 1
+        }
+        MusteringEffect
+        {
+            id: musteringEffect
+            anchors.fill: contentBlock
+            anchors.margins: 10
+            visible: false
+            z: contentBlock.z + 1
+        }
+        WinterIsComingEffect
+        {
+            id: winterIsComingEffect
+            anchors.fill: contentBlock
+            anchors.margins: 10
+            visible: false
+            z: contentBlock.z + 1
+        }
+        LastDaysOfSummerEffect
+        {
+            id: lastDaysOfSummerEffect
+            anchors.fill: contentBlock
+            anchors.margins: 10
+            visible: false
+            z: contentBlock.z + 1
+        }
+
+        ThroneOfSwordsEffect
+        {
+            id: throneOfSwordsEffect
+            anchors.fill: contentBlock
+            anchors.margins: 10
+            visible: false
+            z: contentBlock.z + 1
+            onSupply: root.startWesterosEffect("Снабжение")
+            onMustering: root.startWesterosEffect("Сбор войск")
+            onLastDaysOfSummer: root.startWesterosEffect("Последние дни лета")
+        }
+
         WesterosPhaseSecondDeck
         {
             id: westerosSecondDeck
@@ -413,10 +779,108 @@ ApplicationWindow {
             anchors.margins: 10
             visible: false
             z: contentBlock.z + 1
+            onCardChoisen: root.startWesterosEffect(name)
         }
+
+        GameOfThronesEffect
+        {
+            id: gameOfThronesEffect
+            anchors.fill: contentBlock
+            anchors.margins: 10
+            visible: false
+            z: contentBlock.z + 1
+        }
+        ClashOfKingsEffect
+        {
+            id: clashOfKingsEffect
+            anchors.fill: contentBlock
+            anchors.margins: 10
+            visible: false
+            z: contentBlock.z + 1
+            tracks: [throneTrack, swordTrack, ravenTrack]
+            onVotingFinished:
+            {
+                nextRoundButton.enabled = true
+                nextRoundButtonText.text = "Завершить голосование"
+            }
+
+        }
+        DarkWingsDarkWordsEffect
+        {
+            id: darkWingsDarkWordsEffect
+            anchors.fill: contentBlock
+            anchors.margins: 10
+            visible: false
+            z: contentBlock.z + 1
+            onGameOfThrones: root.startWesterosEffect("Игра Престолов")
+            onClashOfKings: root.startWesterosEffect("Битва королей")
+            onLastDaysOfSummer: root.startWesterosEffect("Последние дни лета")
+        }
+
         WesterosPhaseThirdDeck
         {
             id: westerosThirdDeck
+            anchors.fill: contentBlock
+            anchors.margins: 10
+            visible: false
+            z: contentBlock.z + 1
+            onCardChoisen: root.startWesterosEffect(name)
+
+        }
+        FeastforCrowsEffect
+        {
+            id: feastForCrowsEffect
+            anchors.fill: contentBlock
+            anchors.margins: 10
+            visible: false
+            z: contentBlock.z + 1
+        }
+        PutToTheSwordEffect
+        {
+            id: putToTheSwordEffect
+            anchors.fill: contentBlock
+            anchors.margins: 10
+            visible: false
+            z: contentBlock.z + 1
+            onStormOfSwords: root.startWesterosEffect("Буря мечей")
+            onRainsOfAutumn: root.startWesterosEffect("Дожди осени")
+            onLastDaysOfSummer: root.startWesterosEffect("Последние дни лета")
+        }
+        RainsOfAutumnEffect
+        {
+            id: rainsOfAutumnEffect
+            anchors.fill: contentBlock
+            anchors.margins: 10
+            visible: false
+            z: contentBlock.z + 1
+        }
+        SeaOfStormsEffect
+        {
+            id: seaOfStormsEffect
+            anchors.fill: contentBlock
+            anchors.margins: 10
+            visible: false
+            z: contentBlock.z + 1
+        }
+        StormOfSwordsEffect
+        {
+            id: stormOfSwordsEffect
+            anchors.fill: contentBlock
+            anchors.margins: 10
+            visible: false
+            z: contentBlock.z + 1
+        }
+        WebOfLiesEffect
+        {
+            id: webOfLiesEffect
+            anchors.fill: contentBlock
+            anchors.margins: 10
+            visible: false
+            z: contentBlock.z + 1
+        }
+        WildingAttackEffect
+        {
+            id: wildingAttackEffect
             anchors.fill: contentBlock
             anchors.margins: 10
             visible: false
@@ -532,6 +996,11 @@ ApplicationWindow {
                         factions[name].castles = count
                     }
 
+                    function updateSupplies(name, count)
+                    {
+                        factions[name].supplies = count
+                    }
+
                     property var factions:
                     {
                         "Stark": starkStatusPosition,
@@ -625,7 +1094,7 @@ ApplicationWindow {
                     Layout.fillHeight: true
                     imageSrc: "qrc:/images/throne.png"
                     verticalOrientation: true
-                    Component.onCompleted: hideTokens()
+                    //Component.onCompleted: hideTokens()
                 }
                 InfluenceTrack
                 {
@@ -633,7 +1102,7 @@ ApplicationWindow {
                     Layout.fillWidth: true
                     Layout.fillHeight: true
                     imageSrc: "qrc:/images/sword.png"
-                    Component.onCompleted: hideTokens()
+                    //Component.onCompleted: hideTokens()
                     verticalOrientation: true
                 }
                 InfluenceTrack
@@ -643,7 +1112,7 @@ ApplicationWindow {
                     Layout.fillHeight: true
                     imageSrc: "qrc:/images/raven.png"
                     verticalOrientation: true
-                    Component.onCompleted: hideTokens()
+                    //Component.onCompleted: hideTokens()
                 }
 
             }

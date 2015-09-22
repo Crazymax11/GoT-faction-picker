@@ -6,6 +6,26 @@ FactionToken
     property real speed: 20
     signal animationStopped()
 
+    property bool isStoppedManually: false
+
+    Behavior on x {
+
+                NumberAnimation {
+                    //This specifies how long the animation takes
+                    duration: 600
+                    //This selects an easing curve to interpolate with, the default is Easing.Linear
+                    easing.type: Easing.OutQuad
+                }
+            }
+    Behavior on y {
+
+                NumberAnimation {
+                    //This specifies how long the animation takes
+                    duration: 600
+                    //This selects an easing curve to interpolate with, the default is Easing.Linear
+                    easing.type: Easing.OutQuad
+                }
+            }
     Drag.onActiveChanged:
     {
         if (Drag.active)
@@ -24,17 +44,31 @@ FactionToken
         onStopped:
         {
             parent.z = 0
-            token.animationStopped()
+            if (!isStoppedManually)
+                token.animationStopped()
+           isStoppedManually = false
         }
     }
     function move(xpos, ypos)
     {
-        var oldx = token.x
-        var oldy = token.y
-        xAnim.to = xpos
-        xAnim.duration = Math.abs(xpos - token.x) * 1000/token.speed
-        yAnim.to = ypos
-        yAnim.duration = Math.abs(ypos - token.y)/(token.speed / 1000)
-        parAnim.start()
+        x = xpos
+        y = ypos
+        //старый метод
+//        if (parAnim.running)
+//        {
+//            isStoppedManually = true
+//            parAnim.stop()
+//        }
+//        var oldx = token.x
+//        var oldy = token.y
+//        var speed = token.speed
+//        xAnim.to = xpos
+//        var duration = Math.abs(xpos - token.x) * 1000/token.speed
+//        xAnim.duration = duration
+//        yAnim.to = ypos
+//        duration = Math.abs(ypos - token.y)/(token.speed / 1000)
+//        yAnim.duration = duration
+//        parAnim.start()
+
     }
 }
